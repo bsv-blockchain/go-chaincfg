@@ -1,4 +1,4 @@
-# 🚀 go-template
+# 🚀 go-chaincfg
 > From Zero to Go Hero: Pre-wired Template for Modern Libraries
 
 <table>
@@ -13,28 +13,28 @@
   <tbody>
     <tr>
       <td valign="top" align="left">
-        <a href="https://github.com/bsv-blockchain/go-template/releases">
-          <img src="https://img.shields.io/github/release-pre/bsv-blockchain/go-template?logo=github&style=flat" alt="Latest Release">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/releases">
+          <img src="https://img.shields.io/github/release-pre/bsv-blockchain/go-chaincfg?logo=github&style=flat" alt="Latest Release">
         </a><br/>
-        <a href="https://github.com/bsv-blockchain/go-template/actions">
-          <img src="https://img.shields.io/github/actions/workflow/status/bsv-blockchain/go-template/run-tests.yml?branch=master&logo=github&style=flat" alt="Build Status">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/actions">
+          <img src="https://img.shields.io/github/actions/workflow/status/bsv-blockchain/go-chaincfg/run-tests.yml?branch=master&logo=github&style=flat" alt="Build Status">
         </a><br/>
-		<a href="https://github.com/bsv-blockchain/go-template/actions">
-          <img src="https://github.com/bsv-blockchain/go-template/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
+		<a href="https://github.com/bsv-blockchain/go-chaincfg/actions">
+          <img src="https://github.com/bsv-blockchain/go-chaincfg/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
         </a><br/>
-        <a href="https://github.com/bsv-blockchain/go-template/commits/master">
-		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-template?style=flat&logo=clockify&logoColor=white" alt="Last commit">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/commits/master">
+		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-chaincfg?style=flat&logo=clockify&logoColor=white" alt="Last commit">
 		</a>
       </td>
       <td valign="top" align="left">
-        <a href="https://goreportcard.com/report/github.com/bsv-blockchain/go-template">
-          <img src="https://goreportcard.com/badge/github.com/bsv-blockchain/go-template?style=flat" alt="Go Report Card">
+        <a href="https://goreportcard.com/report/github.com/bsv-blockchain/go-chaincfg">
+          <img src="https://goreportcard.com/badge/github.com/bsv-blockchain/go-chaincfg?style=flat" alt="Go Report Card">
         </a><br/>
-		<a href="https://codecov.io/gh/bsv-blockchain/go-template">
-          <img src="https://codecov.io/gh/bsv-blockchain/go-template/branch/master/graph/badge.svg?style=flat&token=iBdJQpOej9" alt="Code Coverage">
+		<a href="https://codecov.io/gh/bsv-blockchain/go-chaincfg">
+          <img src="https://codecov.io/gh/bsv-blockchain/go-chaincfg/branch/master/graph/badge.svg?style=flat&token=iBdJQpOej9" alt="Code Coverage">
         </a><br/>
-		<a href="https://scorecard.dev/viewer/?uri=github.com/bsv-blockchain/go-template">
-          <img src="https://api.scorecard.dev/projects/github.com/bsv-blockchain/go-template/badge?logo=springsecurity&logoColor=white" alt="OpenSSF Scorecard">
+		<a href="https://scorecard.dev/viewer/?uri=github.com/bsv-blockchain/go-chaincfg">
+          <img src="https://api.scorecard.dev/projects/github.com/bsv-blockchain/go-chaincfg/badge?logo=springsecurity&logoColor=white" alt="OpenSSF Scorecard">
         </a><br/>
 		<a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
@@ -45,10 +45,10 @@
       </td>
       <td valign="top" align="left">
         <a href="https://golang.org/">
-          <img src="https://img.shields.io/github/go-mod/go-version/bsv-blockchain/go-template?style=flat" alt="Go version">
+          <img src="https://img.shields.io/github/go-mod/go-version/bsv-blockchain/go-chaincfg?style=flat" alt="Go version">
         </a><br/>
-        <a href="https://pkg.go.dev/github.com/bsv-blockchain/go-template?tab=doc">
-          <img src="https://pkg.go.dev/badge/github.com/bsv-blockchain/go-template.svg?style=flat" alt="Go docs">
+        <a href="https://pkg.go.dev/github.com/bsv-blockchain/go-chaincfg?tab=doc">
+          <img src="https://pkg.go.dev/badge/github.com/bsv-blockchain/go-chaincfg.svg?style=flat" alt="Go docs">
         </a><br/>
         <a href=".github/AGENTS.md">
           <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
@@ -61,8 +61,8 @@
         </a>
       </td>
       <td valign="top" align="left">
-        <a href="https://github.com/bsv-blockchain/go-template/graphs/contributors">
-          <img src="https://img.shields.io/github/contributors/bsv-blockchain/go-template?style=flat&logo=contentful&logoColor=white" alt="Contributors">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/graphs/contributors">
+          <img src="https://img.shields.io/github/contributors/bsv-blockchain/go-chaincfg?style=flat&logo=contentful&logoColor=white" alt="Contributors">
         </a><br/>
         <a href="https://github.com/sponsors/bsv-blockchain">
           <img src="https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat" alt="Sponsor">
@@ -90,7 +90,7 @@
 
 ## 🧩 What's Inside
 <!-- remove-this-section:start -->
-**go-template** is a plug-and-play scaffold that lets you skip the boilerplate and jump straight to building your Go library. 
+**go-chaincfg** is a plug-and-play scaffold that lets you skip the boilerplate and jump straight to building your Go library. 
 Clone it, [rename a few placeholders](#-template-kick-off-guide-3-easy-steps), and you instantly inherit a production-grade setup:
 
 <br/>
@@ -144,13 +144,13 @@ ___
 
 <br/>
 
-#### 1) Clone or "[Use this template](https://github.com/new?template_name=go-template&template_owner=bsv-blockchain)"
+#### 1) Clone or "[Use this template](https://github.com/new?template_name=go-chaincfg&template_owner=bsv-blockchain)"
 
 ```bash
-git clone https://github.com/bsv-blockchain/go-template.git my-lib && cd my-lib
+git clone https://github.com/bsv-blockchain/go-chaincfg.git my-lib && cd my-lib
 ```
 
-... or click **[Use this template](https://github.com/new?template_name=go-template&template_owner=bsv-blockchain)** on GitHub and create a new repo.
+... or click **[Use this template](https://github.com/new?template_name=go-chaincfg&template_owner=bsv-blockchain)** on GitHub and create a new repo.
 
 <br/>
 
@@ -166,8 +166,8 @@ make install-template owner=my_org repo=my-lib
 
 1. **Finds & replaces names**
 
-	* `bsv-blockchain/go-template` → `my_org/my-lib`
-	* `go-template` → `my-lib`
+	* `bsv-blockchain/go-chaincfg` → `my_org/my-lib`
+	* `go-chaincfg` → `my-lib`
 	* `bsv-blockchain` → `my_org`
 
 2. **Cleans up after itself**
@@ -228,21 +228,21 @@ Push your initial commit and run `make tag version=0.1.0` and the CI/CD pipeline
 
 ## 📦 Installation
 
-**go-template** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
+**go-chaincfg** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
 ```shell script
-go get -u github.com/bsv-blockchain/go-template
+go get -u github.com/bsv-blockchain/go-chaincfg
 ```
 
 <br/>
 
 ## 📚 Documentation
 
-- **API Reference** – Dive into the godocs at [pkg.go.dev/github.com/bsv-blockchain/go-template](https://pkg.go.dev/github.com/bsv-blockchain/go-template)
+- **API Reference** – Dive into the godocs at [pkg.go.dev/github.com/bsv-blockchain/go-chaincfg](https://pkg.go.dev/github.com/bsv-blockchain/go-chaincfg)
 - **Usage Examples** – Browse practical patterns either the [examples directory](examples) or view the [example functions](template_example_test.go)
 - **Benchmarks** – Check the latest numbers in the [benchmark results](#benchmark-results)
 - **Test Suite** – Review both the [unit tests](template_test.go) and [fuzz tests](template_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
 
-> **Good to know:** `go-template` ships with *zero* runtime dependencies.  
+> **Good to know:** `go-chaincfg` ships with *zero* runtime dependencies.  
 > The only external package we use is `testify`—and that's strictly for tests.
 
 <br/>
@@ -410,7 +410,7 @@ govulncheck-install   ## Install govulncheck
 help                  ## Display this help message
 install-go            ## Install using go install with specific version
 install-releaser      ## Install GoReleaser
-install-template      ## Kick-start a fresh copy of go-template (run once!)
+install-template      ## Kick-start a fresh copy of go-chaincfg (run once!)
 install               ## Install the application binary
 lint                  ## Run the golangci-lint application (install if not found)
 release-snap          ## Build snapshot binaries
@@ -493,7 +493,7 @@ The hooks are configured in [.pre-commit-config.yaml](.pre-commit-config.yaml) a
 
 ## 🧪 Examples & Tests
 
-All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/bsv-blockchain/go-template/actions) and use [Go version 1.24.x](https://go.dev/doc/go1.24). View the [configuration file](.github/workflows/run-tests.yml).
+All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/bsv-blockchain/go-chaincfg/actions) and use [Go version 1.24.x](https://go.dev/doc/go1.24). View the [configuration file](.github/workflows/run-tests.yml).
 
 Run all tests:
 
@@ -556,10 +556,10 @@ All kinds of contributions are welcome :raised_hands:!
 The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:.
 You can also support this project by [becoming a sponsor on GitHub](https://github.com/sponsors/bsv-blockchain) :clap:
 
-[![Stars](https://img.shields.io/github/stars/bsv-blockchain/go-template?label=Please%20like%20us&style=social&v=1)](https://github.com/bsv-blockchain/go-template/stargazers)
+[![Stars](https://img.shields.io/github/stars/bsv-blockchain/go-chaincfg?label=Please%20like%20us&style=social&v=1)](https://github.com/bsv-blockchain/go-chaincfg/stargazers)
 
 <br/>
 
 ## 📝 License
 
-[![License](https://img.shields.io/github/license/bsv-blockchain/go-template.svg?style=flat&v=1)](LICENSE)
+[![License](https://img.shields.io/github/license/bsv-blockchain/go-chaincfg.svg?style=flat&v=1)](LICENSE)

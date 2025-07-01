@@ -1,4 +1,4 @@
-title = "go-template gitleaks config"
+title = "go-chaincfg gitleaks config"
 
 [allowlist]
 description = "global allow list"
