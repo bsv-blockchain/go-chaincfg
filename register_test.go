@@ -2,11 +2,11 @@ package chaincfg
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // Define some of the required parameters for a user-registered
