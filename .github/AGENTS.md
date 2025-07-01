@@ -18,19 +18,7 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 
 ## 🔍 Project Overview
 
-**go-chaincfg** is a production-ready scaffold for building new Go libraries with zero setup friction. 
-It ships with opinionated defaults that reflect current best practices—clean project layout, 
-module-aware dependency management, and Makefiles that automate everything from linting and race-condition 
-testing to snapshot releases. Out of the box, GitHub Actions orchestrate CI/CD: unit tests (with `testify`), 
-coverage upload to Codecov, static analysis via golangci-lint and CodeQL, vulnerability auditing with Nancy, 
-and one-command releases through GoReleaser.
-
-Beyond automation, the template supplies all the "undifferentiated heavy lifting" a maintainer usually 
-adds manually: standard README and license, issue and PR templates, CODEOWNERS, semantic version tagging helpers, 
-label synchronization, and optional Slack/Discord/Twitter release announcements. Example functions, fuzz tests and 
-benchmarks are already wired in, so you can focus on writing library code instead of plumbing. 
-Clone, rename a few placeholders, and you have a fully instrumented Go library that is ready for continuous 
-delivery and open-source collaboration from day one.
+**go-chaincfg** is a ... (TODO)
 
 <br/>
 
@@ -58,7 +46,6 @@ delivery and open-source collaboration from day one.
 
 For more detailed guidance and supporting documentation, refer to the following project-level resources:
 
-* `CITATION.cff` — Metadata for citing this project; GitHub uses it to render citation information
 * `CODEOWNERS` - Ownership of the repository and various directories
 * `CODE_OF_CONDUCT.md` — Expected behavior and enforcement
 * `CODE_STANDARDS.md` — Style guides and best practices
@@ -749,6 +736,5 @@ All contributors are expected to append entries here when making meaningful chan
 
 | Date       | Author   | Summary of Changes                                           |
 |------------|----------|--------------------------------------------------------------|
-| 2025-06-30 | @mrz1836 | Added pre-commit hook guidelines and config reference        |
-| 2025-06-27 | @mrz1836 | Adapted to fix this project go-chaincfg                      |
+| 2025-07-01 | @mrz1836 | Adapted to fix this project go-chaincfg                      |
 > For minor edits (typos, formatting), this log update is optional. For all behavioral or structural changes, log entries are **required**.
