@@ -1,8 +1,5 @@
 # 🚀 go-chaincfg
-The `chaincfg` package provides network parameters and genesis block
-definitions for BSV Blockchain and related networks. It is essential for
-initializing and configuring the blockchain state and consensus behavior in
-BSV Blockchain node implementations.
+> Defines BSV network parameters and genesis blocks to initialize and configure blockchain state and consensus behavior.
 
 <table>
   <thead>
