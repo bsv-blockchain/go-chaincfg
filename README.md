@@ -1,5 +1,5 @@
-# 🚀 go-template
-> From Zero to Go Hero: Pre-wired Template for Modern Libraries
+# 🚀 go-chaincfg
+> Defines BSV network parameters and genesis blocks to initialize and configure blockchain state and consensus behavior.
 
 <table>
   <thead>
@@ -13,28 +13,28 @@
   <tbody>
     <tr>
       <td valign="top" align="left">
-        <a href="https://github.com/bsv-blockchain/go-template/releases">
-          <img src="https://img.shields.io/github/release-pre/bsv-blockchain/go-template?logo=github&style=flat" alt="Latest Release">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/releases">
+          <img src="https://img.shields.io/github/release-pre/bsv-blockchain/go-chaincfg?logo=github&style=flat" alt="Latest Release">
         </a><br/>
-        <a href="https://github.com/bsv-blockchain/go-template/actions">
-          <img src="https://img.shields.io/github/actions/workflow/status/bsv-blockchain/go-template/run-tests.yml?branch=master&logo=github&style=flat" alt="Build Status">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/actions">
+          <img src="https://img.shields.io/github/actions/workflow/status/bsv-blockchain/go-chaincfg/run-tests.yml?branch=master&logo=github&style=flat" alt="Build Status">
         </a><br/>
-		<a href="https://github.com/bsv-blockchain/go-template/actions">
-          <img src="https://github.com/bsv-blockchain/go-template/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
+		<a href="https://github.com/bsv-blockchain/go-chaincfg/actions">
+          <img src="https://github.com/bsv-blockchain/go-chaincfg/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
         </a><br/>
-        <a href="https://github.com/bsv-blockchain/go-template/commits/master">
-		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-template?style=flat&logo=clockify&logoColor=white" alt="Last commit">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/commits/master">
+		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-chaincfg?style=flat&logo=clockify&logoColor=white" alt="Last commit">
 		</a>
       </td>
       <td valign="top" align="left">
-        <a href="https://goreportcard.com/report/github.com/bsv-blockchain/go-template">
-          <img src="https://goreportcard.com/badge/github.com/bsv-blockchain/go-template?style=flat" alt="Go Report Card">
+        <a href="https://goreportcard.com/report/github.com/bsv-blockchain/go-chaincfg">
+          <img src="https://goreportcard.com/badge/github.com/bsv-blockchain/go-chaincfg?style=flat" alt="Go Report Card">
         </a><br/>
-		<a href="https://codecov.io/gh/bsv-blockchain/go-template">
-          <img src="https://codecov.io/gh/bsv-blockchain/go-template/branch/master/graph/badge.svg?style=flat&token=iBdJQpOej9" alt="Code Coverage">
+		<a href="https://codecov.io/gh/bsv-blockchain/go-chaincfg">
+          <img src="https://codecov.io/gh/bsv-blockchain/go-chaincfg/branch/master/graph/badge.svg?style=flat&token=iBdJQpOej9" alt="Code Coverage">
         </a><br/>
-		<a href="https://scorecard.dev/viewer/?uri=github.com/bsv-blockchain/go-template">
-          <img src="https://api.scorecard.dev/projects/github.com/bsv-blockchain/go-template/badge?logo=springsecurity&logoColor=white" alt="OpenSSF Scorecard">
+		<a href="https://scorecard.dev/viewer/?uri=github.com/bsv-blockchain/go-chaincfg">
+          <img src="https://api.scorecard.dev/projects/github.com/bsv-blockchain/go-chaincfg/badge?logo=springsecurity&logoColor=white" alt="OpenSSF Scorecard">
         </a><br/>
 		<a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
@@ -45,10 +45,10 @@
       </td>
       <td valign="top" align="left">
         <a href="https://golang.org/">
-          <img src="https://img.shields.io/github/go-mod/go-version/bsv-blockchain/go-template?style=flat" alt="Go version">
+          <img src="https://img.shields.io/github/go-mod/go-version/bsv-blockchain/go-chaincfg?style=flat" alt="Go version">
         </a><br/>
-        <a href="https://pkg.go.dev/github.com/bsv-blockchain/go-template?tab=doc">
-          <img src="https://pkg.go.dev/badge/github.com/bsv-blockchain/go-template.svg?style=flat" alt="Go docs">
+        <a href="https://pkg.go.dev/github.com/bsv-blockchain/go-chaincfg?tab=doc">
+          <img src="https://pkg.go.dev/badge/github.com/bsv-blockchain/go-chaincfg.svg?style=flat" alt="Go docs">
         </a><br/>
         <a href=".github/AGENTS.md">
           <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
@@ -61,11 +61,11 @@
         </a>
       </td>
       <td valign="top" align="left">
-        <a href="https://github.com/bsv-blockchain/go-template/graphs/contributors">
-          <img src="https://img.shields.io/github/contributors/bsv-blockchain/go-template?style=flat&logo=contentful&logoColor=white" alt="Contributors">
+        <a href="https://github.com/bsv-blockchain/go-chaincfg/graphs/contributors">
+          <img src="https://img.shields.io/github/contributors/bsv-blockchain/go-chaincfg?style=flat&logo=contentful&logoColor=white" alt="Contributors">
         </a><br/>
         <a href="https://github.com/sponsors/bsv-blockchain">
-          <img src="https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat" alt="Sponsor">
+          <img src="https://img.shields.io/badge/sponsor-BSV-181717.svg?logo=github&style=flat" alt="Sponsor">
         </a><br/>
       </td>
     </tr>
@@ -75,7 +75,6 @@
 <br/>
 
 ## 🗂️ Table of Contents
-* [What's Inside](#-whats-inside)
 * [Installation](#-installation)
 * [Documentation](#-documentation)
 * [Examples & Tests](#-examples--tests)
@@ -88,161 +87,23 @@
 
 <br/>
 
-## 🧩 What's Inside
-<!-- remove-this-section:start -->
-**go-template** is a plug-and-play scaffold that lets you skip the boilerplate and jump straight to building your Go library. 
-Clone it, [rename a few placeholders](#-template-kick-off-guide-3-easy-steps), and you instantly inherit a production-grade setup:
-
-<br/>
-
-- **📚 Go Best Practices & Examples**  
-  _Includes idiomatic Go patterns, [table-driven tests](template_test.go), [benchmarks](template_benchmark_test.go), [example functions](template_example_test.go), and [fuzz tests](template_fuzz_test.go)—demonstrating how to write robust, maintainable, and production-grade Go code._
-
-- **⚡ Zero-config CI/CD**  
-  _[GitHub Actions](#-documentation) run tests, upload coverage, and enforce linting on every push—so you never forget to run the checks._
-
-- **🛠️ One-command Makefile**  
-  _`make test`, `make lint`, `make bench`, and more—common tasks stay muscle-memory simple._
-
-- **🚢 Automated Releases**  
-  _[GoReleaser](https://goreleaser.com/) cuts signed, versioned artifacts the moment you push a tag—shipping new versions becomes a 10-second ritual._
-
-- **🛡️ Security & Supply-chain Guardrails**  
-  _[Dependabot](https://dependabot.com), [Nancy](https://github.com/sonatype-nexus-community/nancy), [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck), [CodeQL](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning), [OpenSSF Scorecard](https://openssf.org), and [gitleaks](https://github.com/gitleaks/gitleaks) give early warnings before bad things reach production._
-
-- **🎨 Style & Quality Enforcement**  
-  _[golangci-lint](https://github.com/golangci/golangci-lint) + [gofumpt](https://github.com/mvdan/gofumpt) keeps the codebase clean and idiomatic—no bikeshedding required._
-
-- **🤖 AI-Friendly Policies**  
-  _AGENTS.md, CLAUDE.md, cursorrules, and sweep.yaml ensure [ChatGPT](https://openai.com), [Claude](https://claude.ai/), [Cursor](https://www.cursor.com/) & [Sweep](https://sweep.dev/) follow the same house rules._
-
-- **🌍 Community-Ready Meta**  
-  _[Issue/PR templates](.github/ISSUE_TEMPLATE), [CODEOWNERS](.github/CODEOWNERS), [CITATION](CITATION.cff), [label sync](.github/labels.yml), and a welcome bot to show contributors exactly how to get involved._
-
-<br/>
-
-### 🚀 Quick Wins
-
-* **Clone → Tag → Release**: Go from idea to a published version in under five minutes.
-* **Works Everywhere**: macOS, Linux, Windows (maybe lol), ARM64 – fully reproducible builds.
-* **Battery-Included Examples**: ready-to-run demos, benchmarks, fuzz and race tests.
-* **Flexible, Not Fragile**: swap or remove any piece without breaking the whole.
-
-> **Tip:** Run `make help` right after cloning to see every command the template unlocks.
-
-<br/>
-<br/>
-
-___
-
-<br/>
-<br/>
-
-### 🛠 Template Kick-Off Guide (3 Easy Steps)
-
-*(delete this section once your project is initialized)*
-
-<br/>
-
-#### 1) Clone or "[Use this template](https://github.com/new?template_name=go-template&template_owner=bsv-blockchain)"
-
-```bash
-git clone https://github.com/bsv-blockchain/go-template.git my-lib && cd my-lib
-```
-
-... or click **[Use this template](https://github.com/new?template_name=go-template&template_owner=bsv-blockchain)** on GitHub and create a new repo.
-
-<br/>
-
-#### 2) Personalize the template in one command
-
-```bash
-make install-template owner=my_org repo=my-lib
-````
-
-<br/>
-
-#### What does that command do?
-
-1. **Finds & replaces names**
-
-	* `bsv-blockchain/go-template` → `my_org/my-lib`
-	* `go-template` → `my-lib`
-	* `bsv-blockchain` → `my_org`
-
-2. **Cleans up after itself**
-
-	* Deletes the temporary install file `.make/temp.mk`
-	* Removes its own `include .make/temp.mk` line from the root `Makefile`
-
-3. **House-keeping**
-
-	* Remove the default social-share image so you can drop in your own
-
-> That’s it—open a diff, make sure you're happy, commit, and push. 🎉
-
-<br/>
-
-#### 3) Touch up metadata
-
-Edit the highlighted files so they match your project:
-
-* [`AGENTS.md`](.github/AGENTS.md)
-  * Update the project name, description, and any other relevant details at the beginning of the file
-* [`LICENSE`](LICENSE)
-  * Update the year and your name or organization
-* [`README.md`](README.md)
-  * Remove the "remove-this-section" block in this file
-  * Modify the "About" section to describe your library
-* [`.github/SECURITY.md`](.github/SECURITY.md)
-  * Update the security policy to match your project's needs
-* [`.github/FUNDING.yml`](.github/FUNDING.yml)
-  * If you want to accept funding, add your funding links here
-* [`.goreleaser.yml`](.goreleaser.yml)
-  * Modify settings for Slack, Discord, Twitter, or Reddit if you want to announce releases
-* [`CODEOWNERS`](.github/CODEOWNERS)
-  * Adjust rules for code ownership if needed
-
-<br/>
-
-#### Give it a spin!
-Push your initial commit and run `make tag version=0.1.0` and the CI/CD pipeline will take it from there. 🚀
-
-
-<br/>
-<br/>
-
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                          │
-│           MR. Z'S GO-TEMPLATE – YOUR README STARTS RIGHT AFTER THIS BANNER               │
-│                                                                                          │
-└──────────────────────────────────────────────────────────────────────────────────────────┘
-                                         ⬇ ⬇ ⬇
-```
-
-<br/>
-<br/>
-
-<!-- remove-this-section:end -->
-
 ## 📦 Installation
 
-**go-template** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
+**go-chaincfg** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
 ```shell script
-go get -u github.com/bsv-blockchain/go-template
+go get -u github.com/bsv-blockchain/go-chaincfg
 ```
 
 <br/>
 
 ## 📚 Documentation
 
-- **API Reference** – Dive into the godocs at [pkg.go.dev/github.com/bsv-blockchain/go-template](https://pkg.go.dev/github.com/bsv-blockchain/go-template)
-- **Usage Examples** – Browse practical patterns either the [examples directory](examples) or view the [example functions](template_example_test.go)
+- **API Reference** – Dive into the godocs at [pkg.go.dev/github.com/bsv-blockchain/go-chaincfg](https://pkg.go.dev/github.com/bsv-blockchain/go-chaincfg)
+- **Usage Examples** – Browse practical patterns either the [examples directory](examples)
 - **Benchmarks** – Check the latest numbers in the [benchmark results](#benchmark-results)
-- **Test Suite** – Review both the [unit tests](template_test.go) and [fuzz tests](template_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
+- **Test Suite** – Review both the [unit tests](genesis_test.go) and [fuzz tests](chaincfg_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
 
-> **Good to know:** `go-template` ships with *zero* runtime dependencies.  
+> **Good to know:** `go-chaincfg` ships with *zero* runtime dependencies.  
 > The only external package we use is `testify`—and that's strictly for tests.
 
 <br/>
@@ -279,78 +140,6 @@ go get -u github.com/bsv-blockchain/go-template
 </details>
 
 <details>
-<summary><strong><code>Repository File Glossary</code></strong></summary>
-<br/>
-
-This glossary describes each tracked file in the repository and notes if it is required for GitHub or another external service.
-
-| File Path                                                                                      | Description                                     | Service          |
-|------------------------------------------------------------------------------------------------|-------------------------------------------------|------------------|
-| [.cursorrules](.cursorrules)                                                                   | Rules for Cursor AI integrations                | Cursor           |
-| [.devcontainer/devcontainer.json](.devcontainer/devcontainer.json)                             | VS Code dev or GitHub container configuration   | VS Code & GitHub |
-| [.dockerignore](.dockerignore)                                                                 | Paths ignored by Docker builds                  | Docker           |
-| [.editorconfig](.editorconfig)                                                                 | Editor configuration defaults                   | Editor           |
-| [.gitattributes](.gitattributes)                                                               | Git attributes and export settings              | Git              |
-| [.github/AGENTS.md](.github/AGENTS.md)                                                         | Contribution rules and guidelines               | GitHub           |
-| [.github/CLAUDE.md](.github/CLAUDE.md)                                                         | Claude agent instructions                       | Claude           |
-| [.github/CODEOWNERS](.github/CODEOWNERS)                                                       | Code ownership declarations for GitHub          | GitHub           |
-| [.github/CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md)                                       | Community behavior standards                    | GitHub           |
-| [.github/CODE_STANDARDS.md](.github/CODE_STANDARDS.md)                                         | Coding style guide                              | GitHub           |
-| [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md)                                             | How to contribute to the project                | GitHub           |
-| [.github/FUNDING.yml](.github/FUNDING.yml)                                                     | Funding links displayed by GitHub               | GitHub           |
-| [.github/IMAGES/go-share-image.png](.github/IMAGES/go-share-image.png)                         | Social sharing image                            | GitHub           |
-| [.github/ISSUE_TEMPLATE/bug_report.yml](.github/ISSUE_TEMPLATE/bug_report.yml)                 | Issue template for bug reports                  | GitHub           |
-| [.github/ISSUE_TEMPLATE/feature_request.yml](.github/ISSUE_TEMPLATE/feature_request.yml)       | Issue template for feature requests             | GitHub           |
-| [.github/ISSUE_TEMPLATE/question.yml](.github/ISSUE_TEMPLATE/question.yml)                     | Issue template for questions                    | GitHub           |
-| [.github/SECURITY.md](.github/SECURITY.md)                                                     | Security policy                                 | GitHub           |
-| [.github/SUPPORT.md](.github/SUPPORT.md)                                                       | Support guidelines                              | GitHub           |
-| [.github/dependabot.yml](.github/dependabot.yml)                                               | Dependabot configuration                        | GitHub           |
-| [.github/labels.yml](.github/labels.yml)                                                       | Repository label definitions                    | GitHub           |
-| [.github/pull_request_template.md](.github/pull_request_template.md)                           | Pull request description template               | GitHub           |
-| [.github/sweep.yaml](.github/sweep.yaml)                                                       | Sweep AI configuration                          | Sweep AI         |
-| [.github/workflows/auto-merge-on-approval.yml](.github/workflows/auto-merge-on-approval.yml)   | Workflow for automatic merges                   | GitHub Actions   |
-| [.github/workflows/check-for-leaks.yml](.github/workflows/check-for-leaks.yml)                 | Secret leak detection workflow                  | GitHub Actions   |
-| [.github/workflows/clean-runner-cache.yml](.github/workflows/clean-runner-cache.yml)           | Cleanup for GitHub runners                      | GitHub Actions   |
-| [.github/workflows/codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                 | CodeQL security analysis workflow               | GitHub Actions   |
-| [.github/workflows/delete-merged-branches.yml](.github/workflows/delete-merged-branches.yml)   | Auto delete merged branches                     | GitHub Actions   |
-| [.github/workflows/dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)     | Auto merge Dependabot PRs                       | GitHub Actions   |
-| [.github/workflows/pull-request-management.yml](.github/workflows/pull-request-management.yml) | Pull request triage workflow                    | GitHub Actions   |
-| [.github/workflows/release.yml](.github/workflows/release.yml)                                 | Release workflow using GoReleaser               | GitHub Actions   |
-| [.github/workflows/run-tests.yml](.github/workflows/run-tests.yml)                             | CI test workflow                                | GitHub Actions   |
-| [.github/workflows/scorecard.yml](.github/workflows/scorecard.yml)                             | OpenSSF Scorecard workflow                      | GitHub Actions   |
-| [.github/workflows/stale.yml](.github/workflows/stale.yml)                                     | Close stale issues and PRs                      | GitHub Actions   |
-| [.github/workflows/sync-labels.yml](.github/workflows/sync-labels.yml)                         | Sync repository labels                          | GitHub Actions   |
-| [.github/workflows/update-pre-commit-hooks.yml](.github/workflows/update-pre-commit-hooks.yml) | Automatically update pre-commit hooks           | GitHub Actions   |
-| [.github/workflows/update-pip-requirements.yml](.github/workflows/update-pip-requirements.yml) | Update Python requirements for pre-commit hooks | GitHub Actions   |
-| [.gitignore](.gitignore)                                                                       | Files and directories Git should ignore         | Git              |
-| [.gitpod.yml](.gitpod.yml)                                                                     | Gitpod workspace configuration                  | Gitpod           |
-| [.golangci.json](.golangci.json)                                                               | GolangCI-Lint configuration                     | GolangCI-Lint    |
-| [.goreleaser.yml](.goreleaser.yml)                                                             | GoReleaser configuration for release automation | GoReleaser       |
-| [.make/common.mk](.make/common.mk)                                                             | Shared make tasks                               | Make             |
-| [.make/go.mk](.make/go.mk)                                                                     | Go-specific make tasks                          | Make             |
-| [.make/temp.mk](.make/temp.mk)                                                                 | Temporary makefile for internal use             | Make             |
-| [.pre-commit-config.yaml](.pre-commit-config.yaml)                                             | Pre-commit hooks configuration                  | Pre-commit       |
-| [.vscode/extensions.json](.vscode/extensions.json)                                             | Recommended VS Code extensions                  | VS Code          |
-| [.vscode/launch.json](.vscode/launch.json)                                                     | VS Code debugging configuration                 | VS Code          |
-| [.vscode/settings.json](.vscode/settings.json)                                                 | VS Code workspace settings                      | VS Code          |
-| [.vscode/tasks.json](.vscode/tasks.json)                                                       | VS Code tasks configuration                     | VS Code          |
-| [CITATION.cff](CITATION.cff)                                                                   | Citation metadata recognized by GitHub          | GitHub           |
-| [Dockerfile](Dockerfile)                                                                       | Docker image build instructions                 | Docker           |
-| [LICENSE](LICENSE)                                                                             | Project license                                 | Yours!           |
-| [Makefile](Makefile)                                                                           | Build and lint automation                       | Make             |
-| [README.md](README.md)                                                                         | Project overview and usage                      | Yours!           |
-| [codecov.yml](codecov.yml)                                                                     | Codecov upload configuration                    | Codecov          |
-| [examples/example.go](examples/example.go)                                                     | Example usage of the library                    | None             |
-| [go.mod](go.mod)                                                                               | Go module definition                            | Go               |
-| [go.sum](go.sum)                                                                               | Dependency checksums generated by Go            | Go               |
-| [template.go](template.go)                                                                     | Main package source code                        | Yours!           |
-| [template_benchmark_test.go](template_benchmark_test.go)                                       | Go benchmark tests                              | Go test          |
-| [template_example_test.go](template_example_test.go)                                           | Example tests for documentation                 | Go test          |
-| [template_fuzz_test.go](template_fuzz_test.go)                                                 | Go fuzz tests                                   | Go test          |
-| [template_test.go](template_test.go)                                                           | Unit tests                                      | Go test          |
-</details>
-
-<details>
 <summary><strong><code>Library Deployment</code></strong></summary>
 <br/>
 
@@ -366,12 +155,6 @@ To generate a snapshot (non-versioned) release for testing purposes, run:
 
 ```bash
 make release-snap
-```
-
-Before tagging a new version, update the release metadata in the `CITATION.cff` file:
-
-```bash
-make citation version=0.2.1
 ```
 
 Then create and push a new Git tag using:
@@ -410,7 +193,7 @@ govulncheck-install   ## Install govulncheck
 help                  ## Display this help message
 install-go            ## Install using go install with specific version
 install-releaser      ## Install GoReleaser
-install-template      ## Kick-start a fresh copy of go-template (run once!)
+install-template      ## Kick-start a fresh copy of go-chaincfg (run once!)
 install               ## Install the application binary
 lint                  ## Run the golangci-lint application (install if not found)
 release-snap          ## Build snapshot binaries
@@ -493,7 +276,7 @@ The hooks are configured in [.pre-commit-config.yaml](.pre-commit-config.yaml) a
 
 ## 🧪 Examples & Tests
 
-All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/bsv-blockchain/go-template/actions) and use [Go version 1.24.x](https://go.dev/doc/go1.24). View the [configuration file](.github/workflows/run-tests.yml).
+All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/bsv-blockchain/go-chaincfg/actions) and use [Go version 1.24.x](https://go.dev/doc/go1.24). View the [configuration file](.github/workflows/run-tests.yml).
 
 Run all tests:
 
@@ -505,7 +288,7 @@ make test
 
 ## ⚡ Benchmarks
 
-Run the Go [benchmarks](template_benchmark_test.go):
+Run the Go [benchmarks](chaincfg_benchmark_test.go):
 
 ```bash script
 make bench
@@ -517,8 +300,7 @@ make bench
 
 | Benchmark                           | Iterations | ns/op | B/op | allocs/op |
 |-------------------------------------|------------|------:|-----:|----------:|
-| [Greet](template_benchmark_test.go) | 21,179,739 | 56.59 |   40 |         2 |
-
+|                                     |            |       |      |           |
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 > Performance benchmarks for the core functions in this library, executed on an Apple M1 Max (ARM64).
 
@@ -542,9 +324,9 @@ Edit `AGENTS.md` first when adjusting these policies, and keep the other files i
 <br/>
 
 ## 👥 Maintainers
-| [<img src="https://github.com/bsv-blockchain.png" height="50" alt="MrZ" />](https://github.com/bsv-blockchain) |
-|:------------------------------------------------------------------------------------------------:|
-|                                [MrZ](https://github.com/bsv-blockchain)                                 |
+| [<img src="https://github.com/icellan.png" height="50" alt="Siggi" />](https://github.com/icellan) |
+|:--------------------------------------------------------------------------------------------------:|
+|                                [Siggi](https://github.com/icellan)                                 |
 
 <br/>
 
@@ -556,10 +338,10 @@ All kinds of contributions are welcome :raised_hands:!
 The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:.
 You can also support this project by [becoming a sponsor on GitHub](https://github.com/sponsors/bsv-blockchain) :clap:
 
-[![Stars](https://img.shields.io/github/stars/bsv-blockchain/go-template?label=Please%20like%20us&style=social&v=1)](https://github.com/bsv-blockchain/go-template/stargazers)
+[![Stars](https://img.shields.io/github/stars/bsv-blockchain/go-chaincfg?label=Please%20like%20us&style=social&v=1)](https://github.com/bsv-blockchain/go-chaincfg/stargazers)
 
 <br/>
 
 ## 📝 License
 
-[![License](https://img.shields.io/github/license/bsv-blockchain/go-template.svg?style=flat&v=1)](LICENSE)
+[![License](https://img.shields.io/github/license/bsv-blockchain/go-chaincfg.svg?style=flat&v=1)](LICENSE)

@@ -1,15 +1,4 @@
-// Package main is an example of how to use the go-template package
-package main
+// Package examples provides example code for various functionalities.
+package examples
 
-import (
-	"log"
-
-	"github.com/bsv-blockchain/go-template"
-)
-
-func main() {
-	// Greet the user with a custom name
-	name := "Alice"
-	greeting := template.Greet(name)
-	log.Println(greeting)
-}
+// TODO - add example code here
