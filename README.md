@@ -22,9 +22,9 @@
 		<a href="https://github.com/bsv-blockchain/go-chaincfg/actions">
           <img src="https://github.com/bsv-blockchain/go-chaincfg/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
         </a><br/>
-        <a href="https://github.com/bsv-blockchain/go-chaincfg/commits/master">
-		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-chaincfg?style=flat&logo=clockify&logoColor=white" alt="Last commit">
-		</a>
+		<a href="https://sonarcloud.io/project/overview?id=bsv-blockchain_go-chaincfg">
+          <img src="https://sonarcloud.io/api/project_badges/measure?project=bsv-blockchain_go-chaincfg&metric=alert_status&style-flat" alt="SonarCloud">
+        </a>
       </td>
       <td valign="top" align="left">
         <a href="https://goreportcard.com/report/github.com/bsv-blockchain/go-chaincfg">
@@ -38,10 +38,7 @@
         </a><br/>
 		<a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
-        </a><br/>
-		<a href="https://www.bestpractices.dev/projects/10822">
-		  <img src="https://www.bestpractices.dev/projects/10822/badge?style=flat&logo=springsecurity&logoColor=white" alt="OpenSSF Best Practices">
-		</a>
+        </a>
       </td>
       <td valign="top" align="left">
         <a href="https://golang.org/">
@@ -64,6 +61,9 @@
         <a href="https://github.com/bsv-blockchain/go-chaincfg/graphs/contributors">
           <img src="https://img.shields.io/github/contributors/bsv-blockchain/go-chaincfg?style=flat&logo=contentful&logoColor=white" alt="Contributors">
         </a><br/>
+		<a href="https://github.com/bsv-blockchain/go-chaincfg/commits/master">
+		  <img src="https://img.shields.io/github/last-commit/bsv-blockchain/go-chaincfg?style=flat&logo=clockify&logoColor=white" alt="Last commit">
+		</a><br/>
         <a href="https://github.com/sponsors/bsv-blockchain">
           <img src="https://img.shields.io/badge/sponsor-BSV-181717.svg?logo=github&style=flat" alt="Sponsor">
         </a><br/>
