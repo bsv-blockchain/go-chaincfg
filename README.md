@@ -1,5 +1,8 @@
 # 🚀 go-chaincfg
-> From Zero to Go Hero: Pre-wired Template for Modern Libraries
+The `chaincfg` package provides network parameters and genesis block
+definitions for BSV Blockchain and related networks. It is essential for
+initializing and configuring the blockchain state and consensus behavior in
+BSV Blockchain node implementations.
 
 <table>
   <thead>
@@ -88,144 +91,6 @@
 
 <br/>
 
-## 🧩 What's Inside
-<!-- remove-this-section:start -->
-**go-chaincfg** is a plug-and-play scaffold that lets you skip the boilerplate and jump straight to building your Go library. 
-Clone it, [rename a few placeholders](#-template-kick-off-guide-3-easy-steps), and you instantly inherit a production-grade setup:
-
-<br/>
-
-- **📚 Go Best Practices & Examples**  
-  _Includes idiomatic Go patterns, [table-driven tests](template_test.go), [benchmarks](template_benchmark_test.go), [example functions](template_example_test.go), and [fuzz tests](template_fuzz_test.go)—demonstrating how to write robust, maintainable, and production-grade Go code._
-
-- **⚡ Zero-config CI/CD**  
-  _[GitHub Actions](#-documentation) run tests, upload coverage, and enforce linting on every push—so you never forget to run the checks._
-
-- **🛠️ One-command Makefile**  
-  _`make test`, `make lint`, `make bench`, and more—common tasks stay muscle-memory simple._
-
-- **🚢 Automated Releases**  
-  _[GoReleaser](https://goreleaser.com/) cuts signed, versioned artifacts the moment you push a tag—shipping new versions becomes a 10-second ritual._
-
-- **🛡️ Security & Supply-chain Guardrails**  
-  _[Dependabot](https://dependabot.com), [Nancy](https://github.com/sonatype-nexus-community/nancy), [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck), [CodeQL](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning), [OpenSSF Scorecard](https://openssf.org), and [gitleaks](https://github.com/gitleaks/gitleaks) give early warnings before bad things reach production._
-
-- **🎨 Style & Quality Enforcement**  
-  _[golangci-lint](https://github.com/golangci/golangci-lint) + [gofumpt](https://github.com/mvdan/gofumpt) keeps the codebase clean and idiomatic—no bikeshedding required._
-
-- **🤖 AI-Friendly Policies**  
-  _AGENTS.md, CLAUDE.md, cursorrules, and sweep.yaml ensure [ChatGPT](https://openai.com), [Claude](https://claude.ai/), [Cursor](https://www.cursor.com/) & [Sweep](https://sweep.dev/) follow the same house rules._
-
-- **🌍 Community-Ready Meta**  
-  _[Issue/PR templates](.github/ISSUE_TEMPLATE), [CODEOWNERS](.github/CODEOWNERS), [CITATION](CITATION.cff), [label sync](.github/labels.yml), and a welcome bot to show contributors exactly how to get involved._
-
-<br/>
-
-### 🚀 Quick Wins
-
-* **Clone → Tag → Release**: Go from idea to a published version in under five minutes.
-* **Works Everywhere**: macOS, Linux, Windows (maybe lol), ARM64 – fully reproducible builds.
-* **Battery-Included Examples**: ready-to-run demos, benchmarks, fuzz and race tests.
-* **Flexible, Not Fragile**: swap or remove any piece without breaking the whole.
-
-> **Tip:** Run `make help` right after cloning to see every command the template unlocks.
-
-<br/>
-<br/>
-
-___
-
-<br/>
-<br/>
-
-### 🛠 Template Kick-Off Guide (3 Easy Steps)
-
-*(delete this section once your project is initialized)*
-
-<br/>
-
-#### 1) Clone or "[Use this template](https://github.com/new?template_name=go-chaincfg&template_owner=bsv-blockchain)"
-
-```bash
-git clone https://github.com/bsv-blockchain/go-chaincfg.git my-lib && cd my-lib
-```
-
-... or click **[Use this template](https://github.com/new?template_name=go-chaincfg&template_owner=bsv-blockchain)** on GitHub and create a new repo.
-
-<br/>
-
-#### 2) Personalize the template in one command
-
-```bash
-make install-template owner=my_org repo=my-lib
-````
-
-<br/>
-
-#### What does that command do?
-
-1. **Finds & replaces names**
-
-	* `bsv-blockchain/go-chaincfg` → `my_org/my-lib`
-	* `go-chaincfg` → `my-lib`
-	* `bsv-blockchain` → `my_org`
-
-2. **Cleans up after itself**
-
-	* Deletes the temporary install file `.make/temp.mk`
-	* Removes its own `include .make/temp.mk` line from the root `Makefile`
-
-3. **House-keeping**
-
-	* Remove the default social-share image so you can drop in your own
-
-> That’s it—open a diff, make sure you're happy, commit, and push. 🎉
-
-<br/>
-
-#### 3) Touch up metadata
-
-Edit the highlighted files so they match your project:
-
-* [`AGENTS.md`](.github/AGENTS.md)
-  * Update the project name, description, and any other relevant details at the beginning of the file
-* [`LICENSE`](LICENSE)
-  * Update the year and your name or organization
-* [`README.md`](README.md)
-  * Remove the "remove-this-section" block in this file
-  * Modify the "About" section to describe your library
-* [`.github/SECURITY.md`](.github/SECURITY.md)
-  * Update the security policy to match your project's needs
-* [`.github/FUNDING.yml`](.github/FUNDING.yml)
-  * If you want to accept funding, add your funding links here
-* [`.goreleaser.yml`](.goreleaser.yml)
-  * Modify settings for Slack, Discord, Twitter, or Reddit if you want to announce releases
-* [`CODEOWNERS`](.github/CODEOWNERS)
-  * Adjust rules for code ownership if needed
-
-<br/>
-
-#### Give it a spin!
-Push your initial commit and run `make tag version=0.1.0` and the CI/CD pipeline will take it from there. 🚀
-
-
-<br/>
-<br/>
-
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                          │
-│           MR. Z'S GO-TEMPLATE – YOUR README STARTS RIGHT AFTER THIS BANNER               │
-│                                                                                          │
-└──────────────────────────────────────────────────────────────────────────────────────────┘
-                                         ⬇ ⬇ ⬇
-```
-
-<br/>
-<br/>
-
-<!-- remove-this-section:end -->
-
 ## 📦 Installation
 
 **go-chaincfg** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
@@ -238,9 +103,9 @@ go get -u github.com/bsv-blockchain/go-chaincfg
 ## 📚 Documentation
 
 - **API Reference** – Dive into the godocs at [pkg.go.dev/github.com/bsv-blockchain/go-chaincfg](https://pkg.go.dev/github.com/bsv-blockchain/go-chaincfg)
-- **Usage Examples** – Browse practical patterns either the [examples directory](examples) or view the [example functions](template_example_test.go)
+- **Usage Examples** – Browse practical patterns either the [examples directory](examples)
 - **Benchmarks** – Check the latest numbers in the [benchmark results](#benchmark-results)
-- **Test Suite** – Review both the [unit tests](template_test.go) and [fuzz tests](template_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
+- **Test Suite** – Review both the [unit tests](genesis_test.go) and [fuzz tests](chaincfg_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
 
 > **Good to know:** `go-chaincfg` ships with *zero* runtime dependencies.  
 > The only external package we use is `testify`—and that's strictly for tests.
@@ -505,7 +370,7 @@ make test
 
 ## ⚡ Benchmarks
 
-Run the Go [benchmarks](template_benchmark_test.go):
+Run the Go [benchmarks](chaincfg_benchmark_test.go):
 
 ```bash script
 make bench
@@ -513,12 +378,11 @@ make bench
 
 <br/>
 
-### Benchmark Results
+### Benchmark Results (TODO)
 
 | Benchmark                           | Iterations | ns/op | B/op | allocs/op |
 |-------------------------------------|------------|------:|-----:|----------:|
-| [Greet](template_benchmark_test.go) | 21,179,739 | 56.59 |   40 |         2 |
-
+|                                     |            |       |      |           |
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 > Performance benchmarks for the core functions in this library, executed on an Apple M1 Max (ARM64).
 
@@ -542,9 +406,9 @@ Edit `AGENTS.md` first when adjusting these policies, and keep the other files i
 <br/>
 
 ## 👥 Maintainers
-| [<img src="https://github.com/bsv-blockchain.png" height="50" alt="MrZ" />](https://github.com/bsv-blockchain) |
+| [<img src="https://github.com/icellan.png" height="50" alt="Siggi" />](https://github.com/icellan) |
 |:------------------------------------------------------------------------------------------------:|
-|                                [MrZ](https://github.com/bsv-blockchain)                                 |
+|                                [Siggi](https://github.com/icellan)                                 |
 
 <br/>
 
