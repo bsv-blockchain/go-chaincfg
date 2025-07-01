@@ -42,6 +42,57 @@ var (
 	stnPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 224), bigOne)
 )
 
+const (
+	// DeploymentTestDummy defines the rule change deployment ID for testing
+	// purposes.
+	DeploymentTestDummy = iota
+
+	// DeploymentCSV defines the rule change deployment ID for the CSV
+	// soft-fork package. The CSV package includes the deployment of BIPS
+	// 68, 112, and 113.
+	DeploymentCSV
+
+	// NOTE: DefinedDeployments must always come last since it is used to
+	// determine how many defined deployments there currently are.
+
+	// DefinedDeployments is the number of currently defined deployments.
+	DefinedDeployments
+)
+
+var (
+	// ErrDuplicateNet describes an error where the parameters for a Bitcoin
+	// network could not be set due to the network already being a standard
+	// network or previously-registered into this package.
+	ErrDuplicateNet = fmt.Errorf("duplicate Bitcoin network")
+
+	// ErrUnknownHDKeyID describes an error where the provided id which
+	// is intended to identify the network for a hierarchical deterministic
+	// private extended key is not registered.
+	ErrUnknownHDKeyID = fmt.Errorf("unknown hd private extended key bytes")
+)
+
+var (
+	registeredNets      = make(map[wire.BitcoinNet]struct{})
+	pubKeyHashAddrIDs   = make(map[byte]struct{})
+	scriptHashAddrIDs   = make(map[byte]struct{})
+	cashAddressPrefixes = make(map[string]struct{})
+	hdPrivToPubKeyIDs   = make(map[[4]byte][]byte)
+)
+
+// ErrUnknownNetwork is an error when the network is unknown
+var ErrUnknownNetwork = errors.New("unknown network")
+
+// init registers all default networks when the package is initialized.
+func init() {
+	// Register all default networks when the package is initialized.
+	mustRegister(&MainNetParams)
+	mustRegister(&TestNetParams)
+	mustRegister(&RegressionNetParams)
+	mustRegister(&StnParams)
+	mustRegister(&TeraTestNetParams)
+	mustRegister(&TeraScalingTestNetParams)
+}
+
 // Checkpoint represents a block height and hash pair
 type Checkpoint struct {
 	Height int32
@@ -73,23 +124,6 @@ type ConsensusDeployment struct {
 	// deployment expires.
 	ExpireTime uint64
 }
-
-const (
-	// DeploymentTestDummy defines the rule change deployment ID for testing
-	// purposes.
-	DeploymentTestDummy = iota
-
-	// DeploymentCSV defines the rule change deployment ID for the CSV
-	// soft-fork package. The CSV package includes the deployment of BIPS
-	// 68, 112, and 113.
-	DeploymentCSV
-
-	// NOTE: DefinedDeployments must always come last since it is used to
-	// determine how many defined deployments there currently are.
-
-	// DefinedDeployments is the number of currently defined deployments.
-	DefinedDeployments
-)
 
 // Params defines the network parameters for a Bitcoin network.
 type Params struct {
@@ -736,26 +770,6 @@ var TeraScalingTestNetParams = Params{
 	HDCoinType: 1, // all coins use 1
 }
 
-var (
-	// ErrDuplicateNet describes an error where the parameters for a Bitcoin
-	// network could not be set due to the network already being a standard
-	// network or previously-registered into this package.
-	ErrDuplicateNet = fmt.Errorf("duplicate Bitcoin network")
-
-	// ErrUnknownHDKeyID describes an error where the provided id which
-	// is intended to identify the network for a hierarchical deterministic
-	// private extended key is not registered.
-	ErrUnknownHDKeyID = fmt.Errorf("unknown hd private extended key bytes")
-)
-
-var (
-	registeredNets      = make(map[wire.BitcoinNet]struct{})
-	pubKeyHashAddrIDs   = make(map[byte]struct{})
-	scriptHashAddrIDs   = make(map[byte]struct{})
-	cashAddressPrefixes = make(map[string]struct{})
-	hdPrivToPubKeyIDs   = make(map[[4]byte][]byte)
-)
-
 // String returns the hostname of the DNS seed in human-readable form.
 func (d DNSSeed) String() string {
 	return d.Host
@@ -837,9 +851,6 @@ func newHashFromStr(hexStr string) *chainhash.Hash {
 	return hash
 }
 
-// ErrUnknownNetwork is an error when the network is unknown
-var ErrUnknownNetwork = errors.New("unknown network")
-
 // GetChainParams returns the chain parameters for the specified network.
 func GetChainParams(network string) (*Params, error) {
 	switch network {
@@ -866,15 +877,4 @@ func GetChainParamsFromConfig() *Params {
 	chainParams, _ := GetChainParams(network)
 
 	return chainParams
-}
-
-// init registers all default networks when the package is initialized.
-func init() {
-	// Register all default networks when the package is initialized.
-	mustRegister(&MainNetParams)
-	mustRegister(&TestNetParams)
-	mustRegister(&RegressionNetParams)
-	mustRegister(&StnParams)
-	mustRegister(&TeraTestNetParams)
-	mustRegister(&TeraScalingTestNetParams)
 }

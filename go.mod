@@ -3,7 +3,7 @@ module github.com/bsv-blockchain/go-chaincfg
 go 1.24
 
 require (
-	github.com/bsv-blockchain/go-wire v1.0.1
+	github.com/bsv-blockchain/go-wire v1.0.2
 	github.com/davecgh/go-spew v1.1.1
 	github.com/libsv/go-bt/v2 v2.2.5
 	github.com/ordishs/gocore v1.0.79

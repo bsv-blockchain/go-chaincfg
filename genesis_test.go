@@ -114,7 +114,7 @@ func TestGenesisCoinbase(t *testing.T) {
 	}
 }
 
-// TestGenesisCoinbaseBytes tests the genesis coinbase transaction of the
+// TestGenesisCoinbaseBytes tests the genesis coinbase transaction
 func TestGenesisCoinbaseBytes(t *testing.T) {
 	expected := MainNetParams.GenesisBlock.Transactions[0].TxHash().String()
 	expectedCoinbaseHash := "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"
@@ -138,6 +138,20 @@ func TestGenesisCoinbaseBytes(t *testing.T) {
 	if expectedCoinbaseHash != coinbaseTx.TxID() {
 		t.Fatalf("Incorrect genesis coinbase txid.\nexpected: %s\ngot:	%s", expectedCoinbaseHash, coinbaseTx.TxID())
 	}
+}
+
+// TestGenesisActivationHeight checks the default and updated value of GenesisActivationHeight.
+func TestGenesisActivationHeight(t *testing.T) {
+	defaultHeight := uint32(620538)
+	assert.Equal(t, defaultHeight, GenesisActivationHeight, "Expected default GenesisActivationHeight")
+
+	// Change the value and check mutability
+	newHeight := uint32(700000)
+	GenesisActivationHeight = newHeight
+	assert.Equal(t, newHeight, GenesisActivationHeight, "Expected GenesisActivationHeight to be updated")
+
+	// Reset to default for other tests
+	GenesisActivationHeight = defaultHeight
 }
 
 // genesisBlockBytes are the wire-encoded bytes for the genesis block of the
@@ -259,7 +273,7 @@ var testNetGenesisBlockBytes = []byte{
 	0x49, 0xf6, 0xbc, 0x3f, 0x4c, 0xef, 0x38, 0xc4, /* |I..?L.8.| */
 	0xf3, 0x55, 0x04, 0xe5, 0x1e, 0xc1, 0x12, 0xde, /* |.U......| */
 	0x5c, 0x38, 0x4d, 0xf7, 0xba, 0x0b, 0x8d, 0x57, /* |\8M....W| */
-	0x8a, 0x4c, 0x70, 0x2b, 0x6b, 0xf1, 0x1d, 0x5f, /* |.Lp+k.._|*/
+	0x8a, 0x4c, 0x70, 0x2b, 0x6b, 0xf1, 0x1d, 0x5f, /* |.Lp+k.._| */
 	0xac, 0x00, 0x00, 0x00, 0x00, /* |.....|    */
 }
 

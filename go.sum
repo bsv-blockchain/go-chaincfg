@@ -1,5 +1,5 @@
-github.com/bsv-blockchain/go-wire v1.0.1 h1:iXerARK68wnI1fHn+nZ1SrwaWYQnd3Vw5CwXMnMksc4=
-github.com/bsv-blockchain/go-wire v1.0.1/go.mod h1:1ksaEwUGHku8PRNP62hy0cwQgOwnRmFSMeP4R8MyVvs=
+github.com/bsv-blockchain/go-wire v1.0.2 h1:0dScWPVoGGiJeYaKjEzvavAlnn+7R9tuQ1Cf3nEjDPU=
+github.com/bsv-blockchain/go-wire v1.0.2/go.mod h1:1ksaEwUGHku8PRNP62hy0cwQgOwnRmFSMeP4R8MyVvs=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/go-cmp v0.5.5 h1:Khx7svrCpmxxtHBq5j2mp/xVjsi8hQMfNLvJFAlrGgU=
