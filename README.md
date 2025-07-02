@@ -103,9 +103,6 @@ go get -u github.com/bsv-blockchain/go-chaincfg
 - **Benchmarks** – Check the latest numbers in the [benchmark results](#benchmark-results)
 - **Test Suite** – Review both the [unit tests](genesis_test.go) and [fuzz tests](chaincfg_fuzz_test.go) (powered by [`testify`](https://github.com/stretchr/testify))
 
-> **Good to know:** `go-chaincfg` ships with *zero* runtime dependencies.  
-> The only external package we use is `testify`—and that's strictly for tests.
-
 <br/>
 
 <details>
