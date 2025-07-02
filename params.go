@@ -14,7 +14,6 @@ import (
 
 	"github.com/bsv-blockchain/go-bt/v2/chainhash"
 	"github.com/bsv-blockchain/go-wire"
-	"github.com/ordishs/gocore"
 )
 
 // These variables are the chain proof-of-work limit parameters for each default
@@ -957,9 +956,8 @@ func GetChainParams(network string) (*Params, error) {
 	}
 }
 
-// GetChainParamsFromConfig retrieves the chain parameters from the configuration
-func GetChainParamsFromConfig() *Params {
-	network, _ := gocore.Config().Get("network", "mainnet")
+// GetChainParamsFromNetwork retrieves the chain parameters from the configuration
+func GetChainParamsFromNetwork(network string) *Params {
 	chainParams, _ := GetChainParams(network)
 
 	return chainParams

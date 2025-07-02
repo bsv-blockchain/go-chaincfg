@@ -146,3 +146,19 @@ func TestInvalidPubKeyHashAddrID(t *testing.T) {
 	assert.False(t, IsPubKeyHashAddrID(wire.TestNet, 0x00), "Expected invalid PubKeyHashAddrID for TestNet")
 	assert.False(t, IsPubKeyHashAddrID(wire.BitcoinNet(0), MainNetParams.LegacyPubKeyHashAddrID), "Expected invalid PubKeyHashAddrID for unknown network")
 }
+
+func TestReturnsValidParamsForKnownNetwork(t *testing.T) {
+	params := GetChainParamsFromNetwork("mainnet")
+	require.NotNil(t, params, "Expected non-nil params for mainnet")
+	assert.Equal(t, &MainNetParams, params, "Expected MainNetParams for mainnet")
+}
+
+func TestReturnsNilForUnknownNetwork(t *testing.T) {
+	params := GetChainParamsFromNetwork("unknown")
+	assert.Nil(t, params, "Expected nil params for unknown network")
+}
+
+func TestHandlesEmptyNetworkString(t *testing.T) {
+	params := GetChainParamsFromNetwork("")
+	assert.Nil(t, params, "Expected nil params for empty network string")
+}
