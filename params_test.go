@@ -36,8 +36,8 @@ func TestSeeds(t *testing.T) {
 	assert.Equal(t, expectedSeeds, MainNetParams.DNSSeeds, "Seed values are incorrect")
 }
 
-// TestGetChainParams tests GetChainParams for all supported and unsupported networks.
-func TestGetChainParams_Base(t *testing.T) {
+// TestGetChainParamsBase tests GetChainParams for all supported and unsupported networks.
+func TestGetChainParamsBase(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   string
