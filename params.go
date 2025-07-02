@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bsv-blockchain/go-bt/v2/chainhash"
 	"github.com/bsv-blockchain/go-wire"
-	"github.com/libsv/go-bt/v2/chainhash"
 	"github.com/ordishs/gocore"
 )
 
@@ -81,17 +81,6 @@ var (
 
 // ErrUnknownNetwork is an error when the network is unknown
 var ErrUnknownNetwork = errors.New("unknown network")
-
-// init registers all default networks when the package is initialized.
-func init() {
-	// Register all default networks when the package is initialized.
-	mustRegister(&MainNetParams)
-	mustRegister(&TestNetParams)
-	mustRegister(&RegressionNetParams)
-	mustRegister(&StnParams)
-	mustRegister(&TeraTestNetParams)
-	mustRegister(&TeraScalingTestNetParams)
-}
 
 // Checkpoint represents a block height and hash pair
 type Checkpoint struct {
@@ -776,6 +765,8 @@ func (d DNSSeed) String() string {
 }
 
 // Register registers the passed network parameters for a Bitcoin network.  It
+// returns an error if the network is already registered or if the parameters
+// are invalid.
 func Register(params *Params) error {
 	if _, ok := registeredNets[params.Net]; ok {
 		return ErrDuplicateNet
@@ -792,17 +783,36 @@ func Register(params *Params) error {
 	return nil
 }
 
-// mustRegister performs the same function as Register except it panics if there
-// is an error.  This should only be called from package init functions.
-func mustRegister(params *Params) {
-	if err := Register(params); err != nil {
-		panic("failed to register network: " + err.Error())
-	}
+// internalParamMapByAddrID is a map of address IDs to the Params
+var internalParamMapByAddrID = map[byte]*Params{
+	// Mainnet
+	MainNetParams.LegacyPubKeyHashAddrID: &MainNetParams,
+	MainNetParams.LegacyScriptHashAddrID: &MainNetParams,
+
+	// Testnet
+	TestNetParams.LegacyPubKeyHashAddrID: &TestNetParams,
+	TestNetParams.LegacyScriptHashAddrID: &TestNetParams,
+
+	// Regression test
+	RegressionNetParams.LegacyPubKeyHashAddrID: &RegressionNetParams,
+	RegressionNetParams.LegacyScriptHashAddrID: &RegressionNetParams,
+
+	// Stn
+	StnParams.LegacyPubKeyHashAddrID: &StnParams,
+	StnParams.LegacyScriptHashAddrID: &StnParams,
+
+	// Teratestnet
+	TeraTestNetParams.LegacyPubKeyHashAddrID: &TeraTestNetParams,
+	TeraTestNetParams.LegacyScriptHashAddrID: &TeraTestNetParams,
+
+	// TeraScalingTestNet
+	TeraScalingTestNetParams.LegacyPubKeyHashAddrID: &TeraScalingTestNetParams,
+	TeraScalingTestNetParams.LegacyScriptHashAddrID: &TeraScalingTestNetParams,
 }
 
 // IsPubKeyHashAddrID returns whether the passed id is found
 func IsPubKeyHashAddrID(id byte) bool {
-	_, ok := pubKeyHashAddrIDs[id]
+	_, ok := internalParamMapByAddrID[id]
 	return ok
 }
 

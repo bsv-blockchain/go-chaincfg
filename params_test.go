@@ -22,44 +22,79 @@ func TestInvalidHashStr(t *testing.T) {
 	newHashFromStr("banana")
 }
 
-// TestMustRegisterPanic ensures the mustRegister function panics when used to
-// register an invalid network.
-func TestMustRegisterPanic(t *testing.T) {
-	t.Parallel()
-
-	// Set up a "defer function" to catch the expected panic to ensure it actually panicked.
-	defer func() {
-		if err := recover(); err == nil {
-			t.Error("mustRegister did not panic as expected")
-		}
-	}()
-
-	// Intentionally try to register duplicate params to force a panic.
-	mustRegister(&MainNetParams)
-}
-
 // TestSeeds ensures the right seeds are defined.
 func TestSeeds(t *testing.T) {
+
 	expectedSeeds := []DNSSeed{
 		{"seed.bitcoinsv.io", true},
 	}
 
-	if MainNetParams.DNSSeeds == nil {
-		t.Error("Seed values are not set")
-		return
-	}
+	require.NotNil(t, MainNetParams.DNSSeeds, "Seed values are not set")
+	require.Len(t, expectedSeeds, len(MainNetParams.DNSSeeds), "Incorrect number of seed values")
+	assert.Equal(t, expectedSeeds, MainNetParams.DNSSeeds, "Seed values are incorrect")
+}
 
-	if len(MainNetParams.DNSSeeds) != len(expectedSeeds) {
-		t.Error("Incorrect number of seed values")
-		return
-	}
+// TestInternalMap ensures that the internalParamMapByAddrID is correctly populated
+func TestInternalMap(t *testing.T) {
+	// mainnet - legacyPubKeyHashAddrID
+	_, ok := internalParamMapByAddrID[MainNetParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "MainNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &MainNetParams, internalParamMapByAddrID[MainNetParams.LegacyPubKeyHashAddrID], "Expected MainNetParams for LegacyPubKeyHashAddrID")
 
-	for i := range MainNetParams.DNSSeeds {
-		if MainNetParams.DNSSeeds[i] != expectedSeeds[i] {
-			t.Error("Seed values are incorrect")
-			return
-		}
-	}
+	// mainnet - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[MainNetParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "MainNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &MainNetParams, internalParamMapByAddrID[MainNetParams.LegacyScriptHashAddrID], "Expected MainNetParams for LegacyScriptHashAddrID")
+
+	// testnet - legacyPubKeyHashAddrID
+	_, ok = internalParamMapByAddrID[TestNetParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "TestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TestNetParams, internalParamMapByAddrID[TestNetParams.LegacyPubKeyHashAddrID], "Expected TestNetParams for LegacyPubKeyHashAddrID")
+
+	// testnet - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[TestNetParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "TestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TestNetParams, internalParamMapByAddrID[TestNetParams.LegacyScriptHashAddrID], "Expected TestNetParams for LegacyScriptHashAddrID")
+
+	// regressionnet - legacyPubKeyHashAddrID
+	_, ok = internalParamMapByAddrID[RegressionNetParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "RegressionNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &RegressionNetParams, internalParamMapByAddrID[RegressionNetParams.LegacyPubKeyHashAddrID], "Expected RegressionNetParams for LegacyPubKeyHashAddrID")
+
+	// regressionnet - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[RegressionNetParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "RegressionNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &RegressionNetParams, internalParamMapByAddrID[RegressionNetParams.LegacyScriptHashAddrID], "Expected RegressionNetParams for LegacyScriptHashAddrID")
+
+	// stn - legacyPubKeyHashAddrID
+	_, ok = internalParamMapByAddrID[StnParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "StnParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &StnParams, internalParamMapByAddrID[StnParams.LegacyPubKeyHashAddrID], "Expected StnParams for LegacyPubKeyHashAddrID")
+
+	// stn - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[StnParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "StnParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &StnParams, internalParamMapByAddrID[StnParams.LegacyScriptHashAddrID], "Expected StnParams for LegacyScriptHashAddrID")
+
+	// teratestnet - legacyPubKeyHashAddrID
+	_, ok = internalParamMapByAddrID[TeraTestNetParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "TeraTestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TeraTestNetParams, internalParamMapByAddrID[TeraTestNetParams.LegacyPubKeyHashAddrID], "Expected TeraTestNetParams for LegacyPubKeyHashAddrID")
+
+	// teratestnet - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[TeraTestNetParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "TeraTestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TeraTestNetParams, internalParamMapByAddrID[TeraTestNetParams.LegacyScriptHashAddrID], "Expected TeraTestNetParams for LegacyScriptHashAddrID")
+
+	// tstn - legacyPubKeyHashAddrID
+	_, ok = internalParamMapByAddrID[TeraScalingTestNetParams.LegacyPubKeyHashAddrID]
+	require.True(t, ok, "TeraScalingTestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TeraScalingTestNetParams, internalParamMapByAddrID[TeraScalingTestNetParams.LegacyPubKeyHashAddrID], "Expected TeraScalingTestNetParams for LegacyPubKeyHashAddrID")
+
+	// tstn - legacyScriptHashAddrID
+	_, ok = internalParamMapByAddrID[TeraScalingTestNetParams.LegacyScriptHashAddrID]
+	require.True(t, ok, "TeraScalingTestNetParams should be registered in internalParamMapByAddrID")
+	require.Same(t, &TeraScalingTestNetParams, internalParamMapByAddrID[TeraScalingTestNetParams.LegacyScriptHashAddrID], "Expected TeraScalingTestNetParams for LegacyScriptHashAddrID")
 }
 
 // TestGetChainParams tests GetChainParams for all supported and unsupported networks.
