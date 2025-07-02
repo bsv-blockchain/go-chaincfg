@@ -72,11 +72,7 @@ var (
 )
 
 var (
-	registeredNets      = make(map[wire.BitcoinNet]struct{})
-	pubKeyHashAddrIDs   = make(map[byte]struct{})
-	scriptHashAddrIDs   = make(map[byte]struct{})
-	cashAddressPrefixes = make(map[string]struct{})
-	hdPrivToPubKeyIDs   = make(map[[4]byte][]byte)
+	registeredNets = make(map[wire.BitcoinNet]struct{})
 )
 
 // ErrUnknownNetwork is an error when the network is unknown
@@ -773,12 +769,12 @@ func Register(params *Params) error {
 	}
 
 	registeredNets[params.Net] = struct{}{}
-	pubKeyHashAddrIDs[params.LegacyPubKeyHashAddrID] = struct{}{}
-	scriptHashAddrIDs[params.LegacyScriptHashAddrID] = struct{}{}
-	hdPrivToPubKeyIDs[params.HDPrivateKeyID] = params.HDPublicKeyID[:]
+	legacyPubKeyHashAddrIDByNetwork[params.Net] = &params.LegacyPubKeyHashAddrID
+	legacyScriptHashAddrIDByNetwork[params.Net] = &params.LegacyScriptHashAddrID
+	hdPrivToPubKeyIDs[params.HDPrivateKeyID] = [4]byte(params.HDPublicKeyID[:])
 
 	// A valid cashaddress prefix for the given net followed by ':'.
-	cashAddressPrefixes[params.CashAddressPrefix+":"] = struct{}{}
+	cashAddressPrefixesMap[params.Net] = params.CashAddressPrefix + ":"
 
 	return nil
 }
@@ -810,24 +806,104 @@ var internalParamMapByAddrID = map[byte]*Params{
 	TeraScalingTestNetParams.LegacyScriptHashAddrID: &TeraScalingTestNetParams,
 }
 
+// legacyScriptHashAddrIDByNetwork is a map of legacy script hash address IDs by network.
+var legacyScriptHashAddrIDByNetwork = map[wire.BitcoinNet]*byte{
+	// Mainnet
+	MainNetParams.Net: &MainNetParams.LegacyScriptHashAddrID,
+
+	// Testnet
+	TestNetParams.Net: &TestNetParams.LegacyScriptHashAddrID,
+
+	// Regression test
+	RegressionNetParams.Net: &RegressionNetParams.LegacyScriptHashAddrID,
+
+	// Stn
+	StnParams.Net: &StnParams.LegacyScriptHashAddrID,
+
+	// Teratestnet
+	TeraTestNetParams.Net: &TeraTestNetParams.LegacyScriptHashAddrID,
+
+	// TeraScalingTestNet
+	TeraScalingTestNetParams.Net: &TeraScalingTestNetParams.LegacyScriptHashAddrID,
+}
+
+// legacyPubKeyHashAddrIDByNetwork is a map of legacy public key hash address IDs by network.
+var legacyPubKeyHashAddrIDByNetwork = map[wire.BitcoinNet]*byte{
+	// Mainnet
+	MainNetParams.Net: &MainNetParams.LegacyPubKeyHashAddrID,
+
+	// Testnet
+	TestNetParams.Net: &TestNetParams.LegacyPubKeyHashAddrID,
+
+	// Regression test
+	RegressionNetParams.Net: &RegressionNetParams.LegacyPubKeyHashAddrID,
+
+	// Stn
+	StnParams.Net: &StnParams.LegacyPubKeyHashAddrID,
+
+	// Teratestnet
+	TeraTestNetParams.Net: &TeraTestNetParams.LegacyPubKeyHashAddrID,
+
+	// TeraScalingTestNet
+	TeraScalingTestNetParams.Net: &TeraScalingTestNetParams.LegacyPubKeyHashAddrID,
+}
+
+// cashAddressPrefixesMap is a map of valid cashaddress prefixes.
+var cashAddressPrefixesMap = map[wire.BitcoinNet]string{
+	// Mainnet
+	MainNetParams.Net: MainNetParams.CashAddressPrefix + ":",
+
+	// Testnet
+	TestNetParams.Net: TestNetParams.CashAddressPrefix + ":",
+
+	// Regression test
+	RegressionNetParams.Net: RegressionNetParams.CashAddressPrefix + ":",
+
+	// Stn
+	StnParams.Net: StnParams.CashAddressPrefix + ":",
+
+	// Teratestnet
+	TeraTestNetParams.Net: TeraTestNetParams.CashAddressPrefix + ":",
+
+	// TeraScalingTestNet
+	TeraScalingTestNetParams.Net: TeraScalingTestNetParams.CashAddressPrefix + ":",
+}
+
+// hdPrivToPubKeyIDs is a map of hierarchical deterministic private key IDs to their corresponding public key IDs.
+var hdPrivToPubKeyIDs = map[[4]byte][4]byte{
+	// Mainnet
+	MainNetParams.HDPrivateKeyID: MainNetParams.HDPublicKeyID,
+
+	// Testnet & STN & Regression & Teratestnet & TeraScalingTestNet
+	TestNetParams.HDPrivateKeyID: TestNetParams.HDPublicKeyID,
+}
+
 // IsPubKeyHashAddrID returns whether the passed id is found
-func IsPubKeyHashAddrID(id byte) bool {
-	_, ok := internalParamMapByAddrID[id]
-	return ok
+func IsPubKeyHashAddrID(network wire.BitcoinNet, id byte) bool {
+	mapId, ok := legacyPubKeyHashAddrIDByNetwork[network]
+	if !ok || mapId == nil {
+		return false
+	}
+	return *mapId == id
 }
 
 // IsScriptHashAddrID returns whether the passed id is found
-func IsScriptHashAddrID(id byte) bool {
-	_, ok := scriptHashAddrIDs[id]
-	return ok
+func IsScriptHashAddrID(network wire.BitcoinNet, id byte) bool {
+	mapId, ok := legacyScriptHashAddrIDByNetwork[network]
+	if !ok || mapId == nil {
+		return false
+	}
+	return *mapId == id
 }
 
 // IsCashAddressPrefix returns whether the passed prefix is a valid cashaddress
-func IsCashAddressPrefix(prefix string) bool {
+func IsCashAddressPrefix(network wire.BitcoinNet, prefix string) bool {
 	prefix = strings.ToLower(prefix)
-	_, ok := cashAddressPrefixes[prefix]
-
-	return ok
+	mapPrefix, ok := cashAddressPrefixesMap[network]
+	if !ok || mapPrefix == "" {
+		return false
+	}
+	return mapPrefix == prefix
 }
 
 // HDPrivateKeyToPublicKeyID converts the passed hierarchical deterministic key to a public key id.
@@ -845,7 +921,7 @@ func HDPrivateKeyToPublicKeyID(id []byte) ([]byte, error) {
 		return nil, ErrUnknownHDKeyID
 	}
 
-	return pubBytes, nil
+	return pubBytes[:], nil
 }
 
 // newHashFromStr converts the passed big-endian hex string into a
