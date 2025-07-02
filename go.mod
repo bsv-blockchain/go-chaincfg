@@ -3,9 +3,9 @@ module github.com/bsv-blockchain/go-chaincfg
 go 1.24
 
 require (
-	github.com/bsv-blockchain/go-wire v1.0.2
+	github.com/bsv-blockchain/go-bt/v2 v2.3.0
+	github.com/bsv-blockchain/go-wire v1.0.4
 	github.com/davecgh/go-spew v1.1.1
-	github.com/libsv/go-bt/v2 v2.2.5
 	github.com/ordishs/gocore v1.0.79
 	github.com/stretchr/testify v1.10.0
 )
@@ -24,5 +24,3 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/libsv/go-bt/v2 => github.com/ordishs/go-bt/v2 v2.2.22
