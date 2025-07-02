@@ -44,15 +44,15 @@
   },
   "linters": {
     "disable": [
-      "gochecknoglobals",
+
       "gocritic",
       "godot",
-      "godox",
-      "gochecknoinits",
-      "gomoddirectives"
+      "godox"
     ],
     "enable": [
       "asasalint",
+      "gochecknoglobals",
+	  "gochecknoinits",
       "asciicheck",
       "err113",
       "bidichk",
