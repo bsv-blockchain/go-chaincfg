@@ -759,9 +759,24 @@ func (d DNSSeed) String() string {
 	return d.Host
 }
 
-// Register registers the passed network parameters for a Bitcoin network.  It
-// returns an error if the network is already registered or if the parameters
-// are invalid.
+// Register adds the provided Params to the set of recognized Bitcoin networks.
+//
+// This function registers the network parameters for a Bitcoin network, making it available
+// for address encoding/decoding and other network-specific operations. It updates internal
+// maps for address IDs, HD key IDs, and cashaddress prefixes.
+//
+// Parameters:
+//
+//	params - pointer to the Params struct describing the network to register.
+//
+// Returns:
+//
+//	error - ErrDuplicateNet if the network is already registered, or another error if the
+//	        parameters are invalid; otherwise, returns nil on success.
+//
+// Note:
+//   - Registering the same network more than once will result in an error.
+//   - This function is not thread-safe and should be called during initialization.
 func Register(params *Params) error {
 	if _, ok := registeredNets[params.Net]; ok {
 		return ErrDuplicateNet
@@ -776,33 +791,6 @@ func Register(params *Params) error {
 	cashAddressPrefixesMap[params.Net] = params.CashAddressPrefix + ":"
 
 	return nil
-}
-
-// internalParamMapByAddrID is a map of address IDs to the Params
-var internalParamMapByAddrID = map[byte]*Params{
-	// Mainnet
-	MainNetParams.LegacyPubKeyHashAddrID: &MainNetParams,
-	MainNetParams.LegacyScriptHashAddrID: &MainNetParams,
-
-	// Testnet
-	TestNetParams.LegacyPubKeyHashAddrID: &TestNetParams,
-	TestNetParams.LegacyScriptHashAddrID: &TestNetParams,
-
-	// Regression test
-	RegressionNetParams.LegacyPubKeyHashAddrID: &RegressionNetParams,
-	RegressionNetParams.LegacyScriptHashAddrID: &RegressionNetParams,
-
-	// Stn
-	StnParams.LegacyPubKeyHashAddrID: &StnParams,
-	StnParams.LegacyScriptHashAddrID: &StnParams,
-
-	// Teratestnet
-	TeraTestNetParams.LegacyPubKeyHashAddrID: &TeraTestNetParams,
-	TeraTestNetParams.LegacyScriptHashAddrID: &TeraTestNetParams,
-
-	// TeraScalingTestNet
-	TeraScalingTestNetParams.LegacyPubKeyHashAddrID: &TeraScalingTestNetParams,
-	TeraScalingTestNetParams.LegacyScriptHashAddrID: &TeraScalingTestNetParams,
 }
 
 // legacyScriptHashAddrIDByNetwork is a map of legacy script hash address IDs by network.
@@ -877,35 +865,84 @@ var hdPrivToPubKeyIDs = map[[4]byte][4]byte{
 	TestNetParams.HDPrivateKeyID: TestNetParams.HDPublicKeyID,
 }
 
-// IsPubKeyHashAddrID returns whether the passed id is found
+// IsPubKeyHashAddrID determines if the provided address ID byte matches the legacy
+// public key hash address ID for the specified Bitcoin network.
+//
+// This function is typically used to verify whether a given address ID corresponds
+// to a Pay-to-PubKey-Hash (P2PKH) address format for the given network.
+//
+// Parameters:
+//
+//	network - the Bitcoin network identifier (wire.BitcoinNet).
+//	id - the address ID byte to check.
+//
+// Returns:
+//
+//	bool - true if the ID matches the legacy P2PKH address ID for the network, false otherwise.
 func IsPubKeyHashAddrID(network wire.BitcoinNet, id byte) bool {
-	mapId, ok := legacyPubKeyHashAddrIDByNetwork[network]
-	if !ok || mapId == nil {
-		return false
+	if mapID := legacyPubKeyHashAddrIDByNetwork[network]; mapID != nil {
+		return *mapID == id
 	}
-	return *mapId == id
+	return false
 }
 
-// IsScriptHashAddrID returns whether the passed id is found
+// IsScriptHashAddrID determines if the provided address ID byte matches the legacy
+// script hash address ID (P2SH) for the specified Bitcoin network.
+//
+// This function is typically used to verify whether a given address ID corresponds
+// to a Pay-to-Script-Hash (P2SH) address format for the given network.
+//
+// Parameters:
+//
+//	network - the Bitcoin network identifier (wire.BitcoinNet).
+//	id - the address ID byte to check.
+//
+// Returns:
+//
+//	bool - true if the ID matches the legacy P2SH address ID for the network, false otherwise.
 func IsScriptHashAddrID(network wire.BitcoinNet, id byte) bool {
-	mapId, ok := legacyScriptHashAddrIDByNetwork[network]
-	if !ok || mapId == nil {
-		return false
+	if mapID := legacyScriptHashAddrIDByNetwork[network]; mapID != nil {
+		return *mapID == id
 	}
-	return *mapId == id
+	return false
 }
 
-// IsCashAddressPrefix returns whether the passed prefix is a valid cashaddress
+// IsCashAddressPrefix reports whether the given prefix is a valid cashaddress prefix
+// for the specified Bitcoin network.
+//
+// This function compares the provided prefix against the expected cashaddress prefix
+// (including the trailing colon) for the given network, using a case-insensitive comparison.
+//
+// Parameters:
+//
+//	network - the Bitcoin network identifier (wire.BitcoinNet).
+//	prefix - the cashaddress prefix string to validate (should include the colon).
+//
+// Returns:
+//
+//	bool - true if the prefix matches the expected cashaddress prefix for the network, false otherwise.
 func IsCashAddressPrefix(network wire.BitcoinNet, prefix string) bool {
-	prefix = strings.ToLower(prefix)
-	mapPrefix, ok := cashAddressPrefixesMap[network]
-	if !ok || mapPrefix == "" {
-		return false
+	if want := cashAddressPrefixesMap[network]; want != "" {
+		return strings.EqualFold(want, prefix)
 	}
-	return mapPrefix == prefix
+	return false
 }
 
-// HDPrivateKeyToPublicKeyID converts the passed hierarchical deterministic key to a public key id.
+// HDPrivateKeyToPublicKeyID converts a 4-byte BIP32 hierarchical deterministic (HD) private key ID
+// to its corresponding public key ID.
+//
+// This function looks up the provided private key ID in the internal mapping of known HD key pairs
+// and returns the associated public key ID. It is typically used to derive the correct public key
+// version bytes for extended keys.
+//
+// Parameters:
+//
+//	id - a 4-byte slice representing the HD private key ID.
+//
+// Returns:
+//
+//	[]byte - a 4-byte slice containing the corresponding HD public key ID.
+//	error - ErrUnknownHDKeyID if the private key ID is not recognized, or if the input is not 4 bytes long.
 func HDPrivateKeyToPublicKeyID(id []byte) ([]byte, error) {
 	if len(id) != 4 {
 		return nil, ErrUnknownHDKeyID
@@ -936,7 +973,20 @@ func newHashFromStr(hexStr string) *chainhash.Hash {
 	return hash
 }
 
-// GetChainParams returns the chain parameters for the specified network.
+// GetChainParams returns a pointer to the Params struct for the specified Bitcoin network.
+//
+// Supported values for the `network` parameter are: "mainnet", "testnet", "regtest", "stn", "teratestnet", and "tstn".
+// If the provided network name matches one of these, the corresponding Params are returned.
+// If the network name is unknown, an error is returned indicating the network is not recognized.
+//
+// Parameters:
+//
+//	network - the name of the Bitcoin network (e.g., "mainnet", "testnet").
+//
+// Returns:
+//
+//	*Params - pointer to the network parameters for the specified network.
+//	error - non-nil if the network name is unknown.
 func GetChainParams(network string) (*Params, error) {
 	switch network {
 	case "mainnet":
@@ -954,11 +1004,4 @@ func GetChainParams(network string) (*Params, error) {
 	default:
 		return nil, fmt.Errorf("%w: %s", ErrUnknownNetwork, network)
 	}
-}
-
-// GetChainParamsFromNetwork retrieves the chain parameters from the configuration
-func GetChainParamsFromNetwork(network string) *Params {
-	chainParams, _ := GetChainParams(network)
-
-	return chainParams
 }

@@ -5,8 +5,9 @@
 package chaincfg
 
 import (
-	"github.com/bsv-blockchain/go-wire"
 	"testing"
+
+	"github.com/bsv-blockchain/go-wire"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -35,71 +36,8 @@ func TestSeeds(t *testing.T) {
 	assert.Equal(t, expectedSeeds, MainNetParams.DNSSeeds, "Seed values are incorrect")
 }
 
-// TestInternalMap ensures that the internalParamMapByAddrID is correctly populated
-func TestInternalMap(t *testing.T) {
-	// mainnet - legacyPubKeyHashAddrID
-	_, ok := internalParamMapByAddrID[MainNetParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "MainNetParams should be registered in internalParamMapByAddrID")
-	require.Same(t, &MainNetParams, internalParamMapByAddrID[MainNetParams.LegacyPubKeyHashAddrID], "Expected MainNetParams for LegacyPubKeyHashAddrID")
-
-	// mainnet - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[MainNetParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "MainNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &MainNetParams, internalParamMapByAddrID[MainNetParams.LegacyScriptHashAddrID], "Expected MainNetParams for LegacyScriptHashAddrID")
-
-	// testnet - legacyPubKeyHashAddrID
-	_, ok = internalParamMapByAddrID[TestNetParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "TestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TestNetParams, internalParamMapByAddrID[TestNetParams.LegacyPubKeyHashAddrID], "Expected TestNetParams for LegacyPubKeyHashAddrID")
-
-	// testnet - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[TestNetParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "TestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TestNetParams, internalParamMapByAddrID[TestNetParams.LegacyScriptHashAddrID], "Expected TestNetParams for LegacyScriptHashAddrID")
-
-	// regressionnet - legacyPubKeyHashAddrID
-	_, ok = internalParamMapByAddrID[RegressionNetParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "RegressionNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &RegressionNetParams, internalParamMapByAddrID[RegressionNetParams.LegacyPubKeyHashAddrID], "Expected RegressionNetParams for LegacyPubKeyHashAddrID")
-
-	// regressionnet - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[RegressionNetParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "RegressionNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &RegressionNetParams, internalParamMapByAddrID[RegressionNetParams.LegacyScriptHashAddrID], "Expected RegressionNetParams for LegacyScriptHashAddrID")
-
-	// stn - legacyPubKeyHashAddrID
-	_, ok = internalParamMapByAddrID[StnParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "StnParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &StnParams, internalParamMapByAddrID[StnParams.LegacyPubKeyHashAddrID], "Expected StnParams for LegacyPubKeyHashAddrID")
-
-	// stn - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[StnParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "StnParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &StnParams, internalParamMapByAddrID[StnParams.LegacyScriptHashAddrID], "Expected StnParams for LegacyScriptHashAddrID")
-
-	// teratestnet - legacyPubKeyHashAddrID
-	_, ok = internalParamMapByAddrID[TeraTestNetParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "TeraTestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TeraTestNetParams, internalParamMapByAddrID[TeraTestNetParams.LegacyPubKeyHashAddrID], "Expected TeraTestNetParams for LegacyPubKeyHashAddrID")
-
-	// teratestnet - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[TeraTestNetParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "TeraTestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TeraTestNetParams, internalParamMapByAddrID[TeraTestNetParams.LegacyScriptHashAddrID], "Expected TeraTestNetParams for LegacyScriptHashAddrID")
-
-	// tstn - legacyPubKeyHashAddrID
-	_, ok = internalParamMapByAddrID[TeraScalingTestNetParams.LegacyPubKeyHashAddrID]
-	require.True(t, ok, "TeraScalingTestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TeraScalingTestNetParams, internalParamMapByAddrID[TeraScalingTestNetParams.LegacyPubKeyHashAddrID], "Expected TeraScalingTestNetParams for LegacyPubKeyHashAddrID")
-
-	// tstn - legacyScriptHashAddrID
-	_, ok = internalParamMapByAddrID[TeraScalingTestNetParams.LegacyScriptHashAddrID]
-	require.True(t, ok, "TeraScalingTestNetParams should be registered in internalParamMapByAddrID")
-	//require.Same(t, &TeraScalingTestNetParams, internalParamMapByAddrID[TeraScalingTestNetParams.LegacyScriptHashAddrID], "Expected TeraScalingTestNetParams for LegacyScriptHashAddrID")
-}
-
 // TestGetChainParams tests GetChainParams for all supported and unsupported networks.
-func TestGetChainParams(t *testing.T) {
+func TestGetChainParams_Base(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   string
@@ -135,30 +73,66 @@ func TestDNSSeedString(t *testing.T) {
 	assert.Equal(t, "example.com", seed.String(), "DNSSeed.String() should return the Host field")
 }
 
+// TestValidPubKeyHashAddrID tests the IsPubKeyHashAddrID function for valid address IDs.
 func TestValidPubKeyHashAddrID(t *testing.T) {
 	assert.True(t, IsPubKeyHashAddrID(wire.MainNet, MainNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for MainNet")
 	assert.True(t, IsPubKeyHashAddrID(wire.TestNet, TestNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for TestNet")
 	assert.True(t, IsPubKeyHashAddrID(wire.RegTestNet, RegressionNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for RegressionNet")
+	assert.True(t, IsPubKeyHashAddrID(wire.STN, StnParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for StnNet")
+	assert.True(t, IsPubKeyHashAddrID(wire.TeraTestNet, TeraTestNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for TeraTestNet")
+	assert.True(t, IsPubKeyHashAddrID(wire.TeraScalingTestNet, TeraScalingTestNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for TeraScalingTestNet")
+	assert.False(t, IsPubKeyHashAddrID(wire.BitcoinNet(0), MainNetParams.LegacyPubKeyHashAddrID), "Expected valid PubKeyHashAddrID for unknown network with MainNet ID")
+	assert.False(t, IsPubKeyHashAddrID(wire.BitcoinNet(999), 0x7F), "Expected valid PubKeyHashAddrID for unsupported network with custom ID")
 }
 
+// TestInvalidPubKeyHashAddrID tests the IsPubKeyHashAddrID function for invalid address IDs across different networks.
 func TestInvalidPubKeyHashAddrID(t *testing.T) {
 	assert.False(t, IsPubKeyHashAddrID(wire.MainNet, 0xFF), "Expected invalid PubKeyHashAddrID for MainNet")
 	assert.False(t, IsPubKeyHashAddrID(wire.TestNet, 0x00), "Expected invalid PubKeyHashAddrID for TestNet")
 	assert.False(t, IsPubKeyHashAddrID(wire.BitcoinNet(0), MainNetParams.LegacyPubKeyHashAddrID), "Expected invalid PubKeyHashAddrID for unknown network")
+	assert.False(t, IsPubKeyHashAddrID(wire.BitcoinNet(999), 0x7F), "Expected invalid PubKeyHashAddrID for unsupported network")
 }
 
-func TestReturnsValidParamsForKnownNetwork(t *testing.T) {
-	params := GetChainParamsFromNetwork("mainnet")
-	require.NotNil(t, params, "Expected non-nil params for mainnet")
-	assert.Equal(t, &MainNetParams, params, "Expected MainNetParams for mainnet")
-}
+// TestGetChainParams tests the GetChainParams function for various scenarios.
+func TestGetChainParams(t *testing.T) {
+	tests := []struct {
+		name        string
+		network     string
+		expectError bool
+		expected    *Params
+	}{
+		{
+			name:        "Known network - mainnet",
+			network:     "mainnet",
+			expectError: false,
+			expected:    &MainNetParams,
+		},
+		{
+			name:        "Unknown network",
+			network:     "unknown",
+			expectError: true,
+			expected:    nil,
+		},
+		{
+			name:        "Empty network string",
+			network:     "",
+			expectError: true,
+			expected:    nil,
+		},
+	}
 
-func TestReturnsNilForUnknownNetwork(t *testing.T) {
-	params := GetChainParamsFromNetwork("unknown")
-	assert.Nil(t, params, "Expected nil params for unknown network")
-}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			params, err := GetChainParams(tc.network)
 
-func TestHandlesEmptyNetworkString(t *testing.T) {
-	params := GetChainParamsFromNetwork("")
-	assert.Nil(t, params, "Expected nil params for empty network string")
+			if tc.expectError {
+				require.Error(t, err)
+				require.Nil(t, params)
+			} else {
+				require.NoError(t, err)
+				require.NotNil(t, params)
+				require.Equal(t, tc.expected, params)
+			}
+		})
+	}
 }
