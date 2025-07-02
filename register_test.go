@@ -25,6 +25,7 @@ var mockNetParams = Params{
 
 // TestRegister ensures that the Register function works as expected for
 func TestRegister(t *testing.T) {
+
 	type registerTest struct {
 		name   string
 		params *Params
