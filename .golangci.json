@@ -47,12 +47,11 @@
       "gochecknoglobals",
       "gocritic",
       "godot",
-      "godox",
-      "gochecknoinits",
-      "gomoddirectives"
+      "godox"
     ],
     "enable": [
       "asasalint",
+      "gochecknoinits",
       "asciicheck",
       "err113",
       "bidichk",

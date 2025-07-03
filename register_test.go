@@ -1,12 +1,11 @@
 package chaincfg
 
 import (
-	"bytes"
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/suite"
 )
 
 // Define some of the required parameters for a user-registered
@@ -23,427 +22,89 @@ var mockNetParams = Params{
 	CashAddressPrefix:      "bsvmock",
 }
 
-// TestRegister ensures that the Register function works as expected for
-func TestRegister(t *testing.T) {
-	type registerTest struct {
-		name   string
-		params *Params
-		err    error
-	}
+// TestSuite is a struct that embeds testify's suite.Suite to create a test suite for the chaincfg package.
+type TestSuite struct {
+	suite.Suite
+}
 
-	type magicTest struct {
-		magic byte
-		valid bool
-	}
+// assertAddrMagics checks if the address magic IDs and cash address prefixes
+func (ts *TestSuite) assertAddrMagics(p *Params, want bool) {
+	ts.Equal(want, IsPubKeyHashAddrID(p.Net, p.LegacyPubKeyHashAddrID), "P2PKH magic %s", p.Name)
+	ts.Equal(want, IsScriptHashAddrID(p.Net, p.LegacyScriptHashAddrID), "P2SH magic %s", p.Name)
 
-	type prefixTest struct {
-		prefix string
-		valid  bool
-	}
+	full := p.CashAddressPrefix + ":"
+	ts.Equal(want, IsCashAddressPrefix(p.Net, full), "cashaddr %s", p.Name)
+	ts.Equal(want, IsCashAddressPrefix(p.Net, strings.ToUpper(full)), "cashaddr upper %s", p.Name)
+}
 
-	type hdTest struct {
-		priv []byte
-		want []byte
-		err  error
+// assertHD checks if the HDPrivateKeyID can be converted to a HDPublicKeyID.
+func (ts *TestSuite) assertHD(p *Params, wantErr bool) {
+	pub, err := HDPrivateKeyToPublicKeyID(p.HDPrivateKeyID[:])
+	if wantErr {
+		ts.ErrorIs(err, ErrUnknownHDKeyID, "HD priv->pub should fail for %s", p.Name)
+	} else {
+		ts.Require().NoError(err, "HD priv->pub failed for %s", p.Name)
+		ts.Equal(p.HDPublicKeyID[:], pub, "HD pub mismatch for %s", p.Name)
 	}
+}
 
-	tests := []struct {
-		name             string
-		register         []registerTest
-		p2pkhMagics      []magicTest
-		p2shMagics       []magicTest
-		cashAddrPrefixes []prefixTest
-		hdMagics         []hdTest
-	}{
-		{
-			name: "default networks",
-			register: []registerTest{
-				{
-					name:   "duplicate mainnet",
-					params: &MainNetParams,
-					err:    ErrDuplicateNet,
-				},
-				{
-					name:   "duplicate regtest",
-					params: &RegressionNetParams,
-					err:    ErrDuplicateNet,
-				},
-				{
-					name:   "duplicate testnet",
-					params: &TestNetParams,
-					err:    ErrDuplicateNet,
-				},
-			},
-			p2pkhMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyPubKeyHashAddrID,
-					valid: false,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			p2shMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyScriptHashAddrID,
-					valid: false,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			cashAddrPrefixes: []prefixTest{
-				{
-					prefix: MainNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: TestNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: RegressionNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: strings.ToUpper(MainNetParams.CashAddressPrefix + ":"),
-					valid:  true,
-				},
-				{
-					prefix: mockNetParams.CashAddressPrefix + ":",
-					valid:  false,
-				},
-				{
-					prefix: "abc1",
-					valid:  false,
-				},
-				{
-					prefix: "1",
-					valid:  false,
-				},
-				{
-					prefix: MainNetParams.CashAddressPrefix,
-					valid:  false,
-				},
-			},
-			hdMagics: []hdTest{
-				{
-					priv: MainNetParams.HDPrivateKeyID[:],
-					want: MainNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: TestNetParams.HDPrivateKeyID[:],
-					want: TestNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: RegressionNetParams.HDPrivateKeyID[:],
-					want: RegressionNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: mockNetParams.HDPrivateKeyID[:],
-					err:  ErrUnknownHDKeyID,
-				},
-				{
-					priv: []byte{0xff, 0xff, 0xff, 0xff},
-					err:  ErrUnknownHDKeyID,
-				},
-				{
-					priv: []byte{0xff},
-					err:  ErrUnknownHDKeyID,
-				},
-			},
-		},
-		{
-			name: "register mocknet",
-			register: []registerTest{
-				{
-					name:   "mocknet",
-					params: &mockNetParams,
-					err:    nil,
-				},
-			},
-			p2pkhMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			p2shMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			cashAddrPrefixes: []prefixTest{
-				{
-					prefix: MainNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: TestNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: RegressionNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: strings.ToUpper(MainNetParams.CashAddressPrefix + ":"),
-					valid:  true,
-				},
-				{
-					prefix: mockNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: "abc1",
-					valid:  false,
-				},
-				{
-					prefix: "1",
-					valid:  false,
-				},
-				{
-					prefix: MainNetParams.CashAddressPrefix,
-					valid:  false,
-				},
-			},
-			hdMagics: []hdTest{
-				{
-					priv: mockNetParams.HDPrivateKeyID[:],
-					want: mockNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-			},
-		},
-		{
-			name: "more duplicates",
-			register: []registerTest{
-				{
-					name:   "duplicate mainnet",
-					params: &MainNetParams,
-					err:    ErrDuplicateNet,
-				},
-				{
-					name:   "duplicate regtest",
-					params: &RegressionNetParams,
-					err:    ErrDuplicateNet,
-				},
-				{
-					name:   "duplicate testnet",
-					params: &TestNetParams,
-					err:    ErrDuplicateNet,
-				},
-				{
-					name:   "duplicate mocknet",
-					params: &mockNetParams,
-					err:    ErrDuplicateNet,
-				},
-			},
-			p2pkhMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyPubKeyHashAddrID,
-					valid: true,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			p2shMagics: []magicTest{
-				{
-					magic: MainNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: TestNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: RegressionNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: mockNetParams.LegacyScriptHashAddrID,
-					valid: true,
-				},
-				{
-					magic: 0xFF,
-					valid: false,
-				},
-			},
-			cashAddrPrefixes: []prefixTest{
-				{
-					prefix: MainNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: TestNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: RegressionNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: strings.ToUpper(MainNetParams.CashAddressPrefix + ":"),
-					valid:  true,
-				},
-				{
-					prefix: mockNetParams.CashAddressPrefix + ":",
-					valid:  true,
-				},
-				{
-					prefix: "abc1",
-					valid:  false,
-				},
-				{
-					prefix: "1",
-					valid:  false,
-				},
-				{
-					prefix: MainNetParams.CashAddressPrefix,
-					valid:  false,
-				},
-			},
-			hdMagics: []hdTest{
-				{
-					priv: MainNetParams.HDPrivateKeyID[:],
-					want: MainNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: TestNetParams.HDPrivateKeyID[:],
-					want: TestNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: RegressionNetParams.HDPrivateKeyID[:],
-					want: RegressionNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: mockNetParams.HDPrivateKeyID[:],
-					want: mockNetParams.HDPublicKeyID[:],
-					err:  nil,
-				},
-				{
-					priv: []byte{0xff, 0xff, 0xff, 0xff},
-					err:  ErrUnknownHDKeyID,
-				},
-				{
-					priv: []byte{0xff},
-					err:  ErrUnknownHDKeyID,
-				},
-			},
-		},
-	}
+// TestRegisterFlow tests the registration flow of networks, ensuring that
+func (ts *TestSuite) TestRegisterFlow() {
+	builtins := []*Params{&MainNetParams, &RegressionNetParams, &TestNetParams}
 
-	for _, test := range tests {
-		for _, regTest := range test.register {
-			err := Register(regTest.params)
-			if regTest.err != nil {
-				require.ErrorIs(t, err, regTest.err, "%s:%s: Registered network with unexpected error", test.name, regTest.name)
-			} else {
-				require.NoError(t, err, "%s:%s: Unexpected error registering network", test.name, regTest.name)
-			}
+	// 1. Built-in nets should already resolve magics/HD before explicit Register().
+	ts.T().Run("baseline-builtins", func(_ *testing.T) {
+		for _, p := range builtins {
+			ts.assertAddrMagics(p, true)
+			ts.assertHD(p, false)
 		}
+	})
 
-		for i, magTest := range test.p2pkhMagics {
-			valid := IsPubKeyHashAddrID(magTest.magic)
-			assert.Equalf(t, magTest.valid, valid, "%s: P2PKH magic %d valid mismatch", test.name, i)
+	// 2. Register built-ins (should succeed) and then ensure duplicates fail.
+	ts.T().Run("register-builtins", func(t *testing.T) {
+		for _, p := range builtins {
+			require.NoError(t, Register(p), "first register %s", p.Name)
+			require.ErrorIs(t, Register(p), ErrDuplicateNet, "duplicate register %s", p.Name)
 		}
+	})
 
-		for i, magTest := range test.p2shMagics {
-			valid := IsScriptHashAddrID(magTest.magic)
-			assert.Equalf(t, magTest.valid, valid, "%s: P2SH magic %d valid mismatch", test.name, i)
+	// 3. mocknet flow: invalid → register → valid.
+	ts.T().Run("mocknet-flow", func(t *testing.T) {
+		ts.assertAddrMagics(&mockNetParams, false)
+		ts.assertHD(&mockNetParams, true)
+
+		require.NoError(t, Register(&mockNetParams))
+		require.ErrorIs(t, Register(&mockNetParams), ErrDuplicateNet)
+
+		ts.assertAddrMagics(&mockNetParams, true)
+		ts.assertHD(&mockNetParams, false)
+	})
+
+	// 4. Edge-case invalid inputs preserved from original tests.
+	ts.T().Run("invalid-edge-cases", func(t *testing.T) {
+		require.False(t, IsPubKeyHashAddrID(MainNetParams.Net, 0xff))
+		require.False(t, IsScriptHashAddrID(MainNetParams.Net, 0xff))
+		require.False(t, IsCashAddressPrefix(MainNetParams.Net, "abc1"))
+		require.False(t, IsCashAddressPrefix(MainNetParams.Net, "1"))
+		require.False(t, IsCashAddressPrefix(MainNetParams.Net, MainNetParams.CashAddressPrefix))
+
+		_, err := HDPrivateKeyToPublicKeyID([]byte{0xff, 0xff, 0xff, 0xff})
+		require.ErrorIs(t, err, ErrUnknownHDKeyID)
+
+		_, err = HDPrivateKeyToPublicKeyID([]byte{0xff})
+		require.ErrorIs(t, err, ErrUnknownHDKeyID)
+	})
+
+	// 5. Final duplicate sweep for *all* registered nets.
+	ts.T().Run("duplicate-all-nets", func(t *testing.T) {
+		all := append(builtins, &mockNetParams)
+		for _, p := range all {
+			require.ErrorIs(t, Register(p), ErrDuplicateNet, "duplicate final %s", p.Name)
 		}
+	})
+}
 
-		for i, prxTest := range test.cashAddrPrefixes {
-			valid := IsCashAddressPrefix(prxTest.prefix)
-			assert.Equalf(t, prxTest.valid, valid, "%s: cash address prefix %s (%d) valid mismatch", test.name, prxTest.prefix, i)
-		}
-
-		for i, magTest := range test.hdMagics {
-			pubKey, err := HDPrivateKeyToPublicKeyID(magTest.priv)
-			assert.Equalf(t, magTest.err, err, "%s: HD magic %d mismatched error", test.name, i)
-
-			if magTest.err == nil {
-				assert.Truef(t, bytes.Equal(pubKey, magTest.want), "%s: HD magic %d private and public mismatch: got %v expected %v ", test.name, i, pubKey, magTest.want)
-			}
-		}
-	}
+// TestRegisterSuite runs the test suite for the chaincfg package.
+func TestRegisterSuite(t *testing.T) {
+	suite.Run(t, new(TestSuite))
 }
