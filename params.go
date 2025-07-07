@@ -70,9 +70,7 @@ var (
 	ErrUnknownHDKeyID = fmt.Errorf("unknown hd private extended key bytes")
 )
 
-var (
-	registeredNets = make(map[wire.BitcoinNet]struct{})
-)
+var registeredNets = make(map[wire.BitcoinNet]struct{})
 
 // ErrUnknownNetwork is an error when the network is unknown
 var ErrUnknownNetwork = errors.New("unknown network")
@@ -224,6 +222,11 @@ type Params struct {
 	// Mempool parameters
 	RelayNonStdTxs bool
 
+	// RequireStandard defines whether to require standard transactions.
+	// It will default to false which is correct for all networks except mainnet
+	// where it is set to true.
+	RequireStandard bool
+
 	// The prefix used for the cashaddress. This is different for each network.
 	CashAddressPrefix string
 
@@ -336,6 +339,8 @@ var MainNetParams = Params{
 
 	// Mempool parameters
 	RelayNonStdTxs: false,
+
+	RequireStandard: true,
 
 	// The prefix for the cashaddress
 	CashAddressPrefix: "bitcoincash", // always bitcoincash for mainnet
