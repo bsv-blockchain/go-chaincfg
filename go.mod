@@ -2,6 +2,8 @@ module github.com/bsv-blockchain/go-chaincfg
 
 go 1.24.3
 
+toolchain go1.24.4
+
 require (
 	github.com/bsv-blockchain/go-bt/v2 v2.4.2
 	github.com/bsv-blockchain/go-wire v1.0.4
