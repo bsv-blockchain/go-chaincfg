@@ -21,12 +21,12 @@ func TestInvalidHashStr(t *testing.T) {
 			t.Errorf("Expected panic for invalid hash, got nil")
 		}
 	}()
+
 	newHashFromStr("banana")
 }
 
 // TestSeeds ensures the right seeds are defined.
 func TestSeeds(t *testing.T) {
-
 	expectedSeeds := []DNSSeed{
 		{"seed.bitcoinsv.io", true},
 	}

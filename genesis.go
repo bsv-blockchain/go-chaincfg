@@ -11,10 +11,8 @@ import (
 	"github.com/bsv-blockchain/go-wire"
 )
 
-var (
-	// GenesisActivationHeight is the block height at which the genesis block
-	GenesisActivationHeight = uint32(620538)
-)
+// GenesisActivationHeight is the block height at which the genesis block
+var GenesisActivationHeight = uint32(620538)
 
 // genesisCoinbaseTx is the coinbase transaction for the genesis blocks for
 // the main network, regression test network, and test network (version 3).

@@ -895,6 +895,7 @@ func IsPubKeyHashAddrID(network wire.BitcoinNet, id byte) bool {
 	if mapID := legacyPubKeyHashAddrIDByNetwork[network]; mapID != nil {
 		return *mapID == id
 	}
+
 	return false
 }
 
@@ -916,6 +917,7 @@ func IsScriptHashAddrID(network wire.BitcoinNet, id byte) bool {
 	if mapID := legacyScriptHashAddrIDByNetwork[network]; mapID != nil {
 		return *mapID == id
 	}
+
 	return false
 }
 
@@ -937,6 +939,7 @@ func IsCashAddressPrefix(network wire.BitcoinNet, prefix string) bool {
 	if want := cashAddressPrefixesMap[network]; want != "" {
 		return strings.EqualFold(want, prefix)
 	}
+
 	return false
 }
 
