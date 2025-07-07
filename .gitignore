@@ -36,3 +36,5 @@ coverage.out
 
 # Fuzz Tests
 testdata
+
+.history/
