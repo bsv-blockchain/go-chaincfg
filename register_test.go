@@ -26,27 +26,6 @@ type TestSuite struct {
 	suite.Suite
 }
 
-// assertAddrMagics checks if the address magic IDs and cash address prefixes
-func (ts *TestSuite) assertAddrMagics(p *Params, want bool) {
-	ts.Equal(want, IsPubKeyHashAddrID(p.Net, p.LegacyPubKeyHashAddrID), "P2PKH magic %s", p.Name)
-	ts.Equal(want, IsScriptHashAddrID(p.Net, p.LegacyScriptHashAddrID), "P2SH magic %s", p.Name)
-
-	full := p.CashAddressPrefix + ":"
-	ts.Equal(want, IsCashAddressPrefix(p.Net, full), "cashaddr %s", p.Name)
-	ts.Equal(want, IsCashAddressPrefix(p.Net, strings.ToUpper(full)), "cashaddr upper %s", p.Name)
-}
-
-// assertHD checks if the HDPrivateKeyID can be converted to a HDPublicKeyID.
-func (ts *TestSuite) assertHD(p *Params, wantErr bool) {
-	pub, err := HDPrivateKeyToPublicKeyID(p.HDPrivateKeyID[:])
-	if wantErr {
-		ts.ErrorIs(err, ErrUnknownHDKeyID, "HD priv->pub should fail for %s", p.Name)
-	} else {
-		ts.Require().NoError(err, "HD priv->pub failed for %s", p.Name)
-		ts.Equal(p.HDPublicKeyID[:], pub, "HD pub mismatch for %s", p.Name)
-	}
-}
-
 // TestRegisterFlow tests the registration flow of networks, ensuring that
 func (ts *TestSuite) TestRegisterFlow() {
 	builtins := []*Params{&MainNetParams, &RegressionNetParams, &TestNetParams}
@@ -101,6 +80,27 @@ func (ts *TestSuite) TestRegisterFlow() {
 			ts.Require().ErrorIs(Register(p), ErrDuplicateNet, "duplicate final %s", p.Name)
 		}
 	})
+}
+
+// assertAddrMagics checks if the address magic IDs and cash address prefixes
+func (ts *TestSuite) assertAddrMagics(p *Params, want bool) {
+	ts.Equal(want, IsPubKeyHashAddrID(p.Net, p.LegacyPubKeyHashAddrID), "P2PKH magic %s", p.Name)
+	ts.Equal(want, IsScriptHashAddrID(p.Net, p.LegacyScriptHashAddrID), "P2SH magic %s", p.Name)
+
+	full := p.CashAddressPrefix + ":"
+	ts.Equal(want, IsCashAddressPrefix(p.Net, full), "cashaddr %s", p.Name)
+	ts.Equal(want, IsCashAddressPrefix(p.Net, strings.ToUpper(full)), "cashaddr upper %s", p.Name)
+}
+
+// assertHD checks if the HDPrivateKeyID can be converted to a HDPublicKeyID.
+func (ts *TestSuite) assertHD(p *Params, wantErr bool) {
+	pub, err := HDPrivateKeyToPublicKeyID(p.HDPrivateKeyID[:])
+	if wantErr {
+		ts.ErrorIs(err, ErrUnknownHDKeyID, "HD priv->pub should fail for %s", p.Name)
+	} else {
+		ts.Require().NoError(err, "HD priv->pub failed for %s", p.Name)
+		ts.Equal(p.HDPublicKeyID[:], pub, "HD pub mismatch for %s", p.Name)
+	}
 }
 
 // TestRegisterSuite runs the test suite for the chaincfg package.

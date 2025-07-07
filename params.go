@@ -51,7 +51,7 @@ const (
 	// 68, 112, and 113.
 	DeploymentCSV
 
-	// NOTE: DefinedDeployments must always come last since it is used to
+	// DefinedDeployments must always come last since it is used to
 	// determine how many defined deployments there currently are.
 
 	// DefinedDeployments is the number of currently defined deployments.
@@ -193,7 +193,7 @@ type Params struct {
 	// MinDiffReductionTime is the amount of time after which the minimum
 	// required difficulty should be reduced when a block hasn't been found.
 	//
-	// NOTE: This only applies if ReduceMinDifficulty is true.
+	// This only applies if ReduceMinDifficulty is true.
 	MinDiffReductionTime time.Duration
 
 	// GenerateSupported specifies whether CPU mining is allowed.
@@ -786,7 +786,7 @@ func (d DNSSeed) String() string {
 //	error - ErrDuplicateNet if the network is already registered, or another error if the
 //	        parameters are invalid; otherwise, returns nil on success.
 //
-// Note:
+// Comments:
 //   - Registering the same network more than once will result in an error.
 //   - This function is not thread-safe and should be called during initialization.
 func Register(params *Params) error {
