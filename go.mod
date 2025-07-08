@@ -6,7 +6,7 @@ toolchain go1.24.4
 
 require (
 	github.com/bsv-blockchain/go-bt/v2 v2.4.2
-	github.com/bsv-blockchain/go-wire v1.0.4
+	github.com/bsv-blockchain/go-wire v1.0.6
 	github.com/davecgh/go-spew v1.1.1
 	github.com/stretchr/testify v1.10.0
 )
