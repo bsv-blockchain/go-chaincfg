@@ -644,7 +644,7 @@ var TeraTestNetParams = Params{
 	GenesisActivationHeight:   1,
 	ChronicleActivationHeight: 2, // temporary and subject to change
 	MaxCoinbaseScriptSigSize:  100,
-	CoinbaseMaturity:          10, // coinbase matures after 10 confirmations
+	CoinbaseMaturity:          100, // coinbase matures after 100 confirmations
 
 	SubsidyReductionInterval: 210000,
 	TargetTimePerBlock:       time.Minute * 10, // 10 minutes
