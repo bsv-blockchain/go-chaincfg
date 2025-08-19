@@ -148,7 +148,7 @@ var teraTestNetGenesisBlock = wire.MsgBlock{
 		MerkleRoot: testNetGenesisMerkleRoot, // 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
 		Timestamp:  time.Unix(1755606836, 0), // 2025-08-19T08:33:56 +0000 UTC
 		Bits:       0x207fffff,               // Easy difficulty for test network
-		Nonce:      0x00000002,               // Valid nonce for 0x207fffff difficulty
+		Nonce:      0x00000002,               // Nonce value that produces a block hash meeting the proof-of-work requirement for 0x207fffff difficulty
 	},
 	Transactions: []*wire.MsgTx{&genesisCoinbaseTx},
 }
