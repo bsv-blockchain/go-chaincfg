@@ -631,11 +631,11 @@ var TeraTestNetParams = Params{
 	GenesisBlock: &teraTestNetGenesisBlock,
 	GenesisHash:  &teraTestNetGenesisHash,
 	PowLimit:     testNetPowLimit,
-	PowLimitBits: 0x207fffff, // very easy pow limit
+	PowLimitBits: 0x1d00ffff,
 
-	BIP0034Height: 100000000, // Not active - Permit ver 1 blocks
-	BIP0065Height: 1351,      // Used by regression tests
-	BIP0066Height: 1251,      // Used by regression tests
+	BIP0034Height: 0,
+	BIP0065Height: 0,
+	BIP0066Height: 0,
 	CSVHeight:     0,
 
 	UahfForkHeight: 0, // always enabled
@@ -704,11 +704,11 @@ var TeraScalingTestNetParams = Params{
 	GenesisBlock: &testNetGenesisBlock,
 	GenesisHash:  &testNetGenesisHash,
 	PowLimit:     testNetPowLimit,
-	PowLimitBits: 0x207fffff, // very easy pow limit
+	PowLimitBits: 0x1d00ffff, // very easy pow limit
 
-	BIP0034Height: 100000000, // Not active - Permit ver 1 blocks
-	BIP0065Height: 1351,      // Used by regression tests
-	BIP0066Height: 1251,      // Used by regression tests
+	BIP0034Height: 0, // Not active - Permit ver 1 blocks
+	BIP0065Height: 0, // Used by regression tests
+	BIP0066Height: 0, // Used by regression tests
 	CSVHeight:     0,
 
 	UahfForkHeight: 0, // always enabled
