@@ -147,8 +147,8 @@ var teraTestNetGenesisBlock = wire.MsgBlock{
 		PrevBlock:  chainhash.Hash{},         // 0000000000000000000000000000000000000000000000000000000000000000
 		MerkleRoot: testNetGenesisMerkleRoot, // 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
 		Timestamp:  time.Unix(1755606836, 0), // 2025-08-19T08:33:56 +0000 UTC
-		Bits:       0x207fffff,               // Easy difficulty for test network
-		Nonce:      0x00000005,               // Nonce value that produces a block hash meeting the proof-of-work requirement for 0x207fffff difficulty
+		Bits:       0x1d00ffff,
+		Nonce:      0x411f6c9c, // Nonce value that produces a block hash meeting the proof-of-work requirement for 0x1d00ffff difficulty
 	},
 	Transactions: []*wire.MsgTx{&genesisCoinbaseTx},
 }
@@ -156,10 +156,10 @@ var teraTestNetGenesisBlock = wire.MsgBlock{
 // teraTestNetGenesisHash is the hash of the first block in the blockchain for the
 // tera test network.
 var teraTestNetGenesisHash = chainhash.Hash([chainhash.HashSize]byte{ // Make go vet happy.
-	0xb3, 0x63, 0x94, 0x9e, 0x6a, 0x54, 0xc6, 0x83,
-	0x97, 0x02, 0x56, 0x65, 0x30, 0x53, 0x01, 0x56,
-	0x28, 0xac, 0x62, 0xc3, 0x8d, 0xdc, 0x3b, 0xe0,
-	0x3d, 0x3d, 0x49, 0xbf, 0xe6, 0xbf, 0x38, 0x42,
+	0x6d, 0x77, 0xb7, 0x76, 0x79, 0x81, 0xea, 0xc2,
+	0xb2, 0x04, 0x4a, 0x1a, 0x1c, 0x19, 0xb9, 0x74,
+	0x1c, 0x23, 0x47, 0x37, 0x5b, 0x8f, 0xa8, 0xa0,
+	0xbb, 0xea, 0x99, 0x04, 0x00, 0x00, 0x00, 0x00,
 })
 
 // stnGenesisHash is the hash of the first block in the blockchain for the
