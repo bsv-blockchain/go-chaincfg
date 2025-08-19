@@ -628,8 +628,8 @@ var TeraTestNetParams = Params{
 	DefaultPort: "18333",
 
 	// Chain parameters
-	GenesisBlock: &testNetGenesisBlock,
-	GenesisHash:  &testNetGenesisHash,
+	GenesisBlock: &teraTestNetGenesisBlock,
+	GenesisHash:  &teraTestNetGenesisHash,
 	PowLimit:     testNetPowLimit,
 	PowLimitBits: 0x207fffff, // very easy pow limit
 
