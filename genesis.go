@@ -139,6 +139,29 @@ var testNetGenesisBlock = wire.MsgBlock{
 	Transactions: []*wire.MsgTx{&genesisCoinbaseTx},
 }
 
+// teraTestNetGenesisBlock defines the genesis block of the blockchain which
+// serves as the public transaction ledger for the test network (version 3).
+var teraTestNetGenesisBlock = wire.MsgBlock{
+	Header: wire.BlockHeader{
+		Version:    1,
+		PrevBlock:  chainhash.Hash{},         // 0000000000000000000000000000000000000000000000000000000000000000
+		MerkleRoot: testNetGenesisMerkleRoot, // 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
+		Timestamp:  time.Unix(1755606836, 0), // 2025-08-19T08:33:56 +0000 UTC
+		Bits:       0x1d00ffff,               // 486604799 [00000000ffff0000000000000000000000000000000000000000000000000000]
+		Nonce:      0x18aea41a,               // 414098458
+	},
+	Transactions: []*wire.MsgTx{&genesisCoinbaseTx},
+}
+
+// teraTestNetGenesisHash is the hash of the first block in the blockchain for the
+// tera test network.
+var teraTestNetGenesisHash = chainhash.Hash([chainhash.HashSize]byte{ // Make go vet happy.
+	0x12, 0x32, 0x0e, 0x07, 0x48, 0xfd, 0x4c, 0x44,
+	0x1d, 0x2d, 0x97, 0xba, 0x98, 0x56, 0xcd, 0xdd,
+	0x27, 0x13, 0x42, 0xe1, 0xb2, 0xc5, 0x17, 0x30,
+	0x97, 0x64, 0x58, 0x89, 0x33, 0xe1, 0x27, 0x1a,
+})
+
 // stnGenesisHash is the hash of the first block in the blockchain for the
 // stn network.
 var stnGenesisHash = chainhash.Hash([chainhash.HashSize]byte{ // Make go vet happy.

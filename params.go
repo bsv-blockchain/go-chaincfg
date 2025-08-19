@@ -628,8 +628,8 @@ var TeraTestNetParams = Params{
 	DefaultPort: "18333",
 
 	// Chain parameters
-	GenesisBlock: &testNetGenesisBlock,
-	GenesisHash:  &testNetGenesisHash,
+	GenesisBlock: &teraTestNetGenesisBlock,
+	GenesisHash:  &teraTestNetGenesisHash,
 	PowLimit:     testNetPowLimit,
 	PowLimitBits: 0x207fffff, // very easy pow limit
 
@@ -644,7 +644,7 @@ var TeraTestNetParams = Params{
 	GenesisActivationHeight:   1,
 	ChronicleActivationHeight: 2, // temporary and subject to change
 	MaxCoinbaseScriptSigSize:  100,
-	CoinbaseMaturity:          10, // coinbase matures after 10 confirmations
+	CoinbaseMaturity:          100, // coinbase matures after 100 confirmations
 
 	SubsidyReductionInterval: 210000,
 	TargetTimePerBlock:       time.Minute * 10, // 10 minutes
@@ -717,7 +717,7 @@ var TeraScalingTestNetParams = Params{
 	GenesisActivationHeight:   1,
 	ChronicleActivationHeight: 2, // temporary and subject to change
 	MaxCoinbaseScriptSigSize:  100,
-	CoinbaseMaturity:          10, // coinbase matures after 10 confirmations
+	CoinbaseMaturity:          100, // coinbase matures after 100 confirmations
 
 	SubsidyReductionInterval: 210000,
 	TargetTimePerBlock:       time.Minute * 10, // 10 minutes
