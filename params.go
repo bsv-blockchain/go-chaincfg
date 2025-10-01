@@ -39,6 +39,9 @@ var (
 	// stnPowLimit is the highest proof of work value a Bitcoin block can
 	// have for the scaling test network. It is value 2^224-1.
 	stnPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 224), bigOne)
+
+	// protocolVersion is the version of the protocol used for libp2p topics
+	protocolVersion = "1.0.0"
 )
 
 const (
@@ -248,7 +251,7 @@ type Params struct {
 var MainNetParams = Params{
 	Name:        "mainnet",
 	Net:         wire.MainNet,
-	TopicPrefix: "bitcoin/mainnet",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/mainnet", protocolVersion),
 	DefaultPort: "8333",
 	DNSSeeds: []DNSSeed{
 		{"seed.bitcoinsv.io", true},
@@ -363,7 +366,7 @@ var MainNetParams = Params{
 var StnParams = Params{
 	Name:        "stn",
 	Net:         wire.STN,
-	TopicPrefix: "bitcoin/stn",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/stn", protocolVersion),
 	DefaultPort: "9333",
 	DNSSeeds:    []DNSSeed{},
 
@@ -444,7 +447,7 @@ var StnParams = Params{
 var RegressionNetParams = Params{
 	Name:        "regtest",
 	Net:         wire.RegTestNet,
-	TopicPrefix: "bitcoin/regtest",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/regtest", protocolVersion),
 	DefaultPort: "18444",
 	DNSSeeds:    []DNSSeed{},
 
@@ -525,7 +528,7 @@ var RegressionNetParams = Params{
 var TestNetParams = Params{
 	Name:        "testnet",
 	Net:         wire.TestNet,
-	TopicPrefix: "bitcoin/testnet",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/testnet", protocolVersion),
 	DefaultPort: "18333",
 	DNSSeeds: []DNSSeed{
 		{"testnet-seed.bitcoinsv.io", true},
@@ -624,7 +627,7 @@ var TestNetParams = Params{
 var TeraTestNetParams = Params{
 	Name:        "teratestnet",
 	Net:         wire.TeraTestNet,
-	TopicPrefix: "bitcoin/teratestnet",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/teratestnet", protocolVersion),
 	DefaultPort: "18333",
 
 	// Chain parameters
@@ -697,7 +700,7 @@ var TeraTestNetParams = Params{
 var TeraScalingTestNetParams = Params{
 	Name:        "tstn",
 	Net:         wire.TeraScalingTestNet,
-	TopicPrefix: "bitcoin/tstn",
+	TopicPrefix: fmt.Sprintf("teranode/bitcoin/%s/tstn", protocolVersion),
 	DefaultPort: "18333",
 
 	// Chain parameters
