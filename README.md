@@ -1,4 +1,4 @@
-# 🚀 go-chaincfg
+# 🧬 go-chaincfg
 > Defines BSV network parameters and genesis blocks to initialize and configure blockchain state and consensus behavior.
 
 <table>
@@ -266,16 +266,6 @@ Run the Go [benchmarks](chaincfg_benchmark_test.go):
 ```bash script
 magex bench
 ```
-
-<br/>
-
-### Benchmark Results
-
-| Benchmark                           | Iterations | ns/op | B/op | allocs/op |
-|-------------------------------------|------------|------:|-----:|----------:|
-|                                     |            |       |      |           |
-> These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
-> Performance benchmarks for the core functions in this library, executed on an Apple M1 Max (ARM64).
 
 <br/>
 
