@@ -2,8 +2,8 @@ github.com/bsv-blockchain/go-bt/v2 v2.5.0 h1:vXn0FeDVHIpJb3Y0UruWEQ8ZkbYGkjGDMRL
 github.com/bsv-blockchain/go-bt/v2 v2.5.0/go.mod h1:TQyVESpNMN5ah8ntPZve4GOrDgGY/22W8c42k39BvN4=
 github.com/bsv-blockchain/go-sdk v1.2.10 h1:e3wK/4SgSPqhz4Aw9vnKN/JkIwequdqlPWToYNGvuOg=
 github.com/bsv-blockchain/go-sdk v1.2.10/go.mod h1:C1r7iZbRUCbC015GjbhcpwH0jL5ubPn5XaQgjvUaPdU=
-github.com/bsv-blockchain/go-wire v1.0.7 h1:Q0ETQNBPmHJWDcPh9hu1dNCuYtE5XJ+4jl/wAWjZ5GU=
-github.com/bsv-blockchain/go-wire v1.0.7/go.mod h1:U7GuHghzQ5yS+ROxp8b/DXy7ytWwWR6dKSfv+W6QLsM=
+github.com/bsv-blockchain/go-wire v1.1.0 h1:5kXZPbF/tyMoDuqgAybJGGxui+gNO6QUoUvdY+RzMv0=
+github.com/bsv-blockchain/go-wire v1.1.0/go.mod h1:d7xJFMFlvRoxTYRFCPYd7/tgX64NFxoj5de6vrX8KYc=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
