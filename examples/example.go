@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	chaincfg "github.com/bsv-blockchain/go-chaincfg"
 	"github.com/bsv-blockchain/go-wire"
+
+	chaincfg "github.com/bsv-blockchain/go-chaincfg"
 )
 
 // ExampleIsPubKeyHashAddrID demonstrates how to verify the legacy public key hash
