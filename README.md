@@ -2,7 +2,7 @@
 
 # 🧬&nbsp;&nbsp;go-chaincfg
 
-**Defines BSV network parameters and genesis blocks to initialize and configure blockchain state and consensus behavior.**
+**BSV network parameters and genesis blocks for blockchain initialization and consensus.**
 
 <br/>
 
