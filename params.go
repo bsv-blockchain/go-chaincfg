@@ -274,7 +274,7 @@ var MainNetParams = Params{
 	DaaForkHeight: 504031, // 0000000000000000011ebf65b60d0a3de80b8175be709d653b4c1a1beeb6ab9c
 
 	GenesisActivationHeight:   620538,
-	ChronicleActivationHeight: 921788, // temporary and subject to change
+	ChronicleActivationHeight: 943816,
 	MaxCoinbaseScriptSigSize:  100,
 	CoinbaseMaturity:          100,
 	SubsidyReductionInterval:  210000,
@@ -551,7 +551,7 @@ var TestNetParams = Params{
 	DaaForkHeight: 1188697, // 0000000000170ed0918077bde7b4d36cc4c91be69fa09211f748240dabe047fb
 
 	GenesisActivationHeight:   1344302,
-	ChronicleActivationHeight: 1686611, // temporary and subject to change
+	ChronicleActivationHeight: 1713168,
 	MaxCoinbaseScriptSigSize:  100,
 	CoinbaseMaturity:          100,
 
