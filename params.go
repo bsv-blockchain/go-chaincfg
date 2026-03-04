@@ -319,6 +319,8 @@ var MainNetParams = Params{
 		{800000, newHashFromStr("000000000000000000ad9056924410005d91b57f100bce345944e5caf56e8565")},
 		{850000, newHashFromStr("0000000000000000039302a65227ab75fd93904ebe2e62421d1c66b15808b23b")},
 		{868500, newHashFromStr("00000000000000000a4c8747ee369c2f4645cf7b55db534851fdc1a040f74de4")},
+		{900000, newHashFromStr("000000000000000002feb6a36e1b8bf81409d0252e285449e3d0ef2388c5506a")},
+		{938000, newHashFromStr("000000000000000002616a5ad2413acf7cf122c5aa27fbd29bfa0e8c12dd455b")},
 	},
 
 	// Consensus rule change deployments.
@@ -582,6 +584,7 @@ var TestNetParams = Params{
 		{1400000, newHashFromStr("000000000000008f84faa5afa3e30bce81599108f932eabdf9ee3d39bb225e5b")},
 		{1500000, newHashFromStr("00000000000005a00d805e3555e53f18c6276cb5ddc90a3ceeaeaf03bb2fdbea")},
 		{1600000, newHashFromStr("000000000000133137efc60aab38163c0d032d651826ccbda90b169f3bcec6dd")},
+		{1700000, newHashFromStr("000000000004862daef0df15508b0a88efb75faa5be0c521409a29832e23d07c")},
 	},
 
 	// Consensus rule change deployments.
@@ -656,6 +659,12 @@ var TeraTestNetParams = Params{
 	NoDifficultyAdjustment:   false,
 	MinDiffReductionTime:     time.Minute * 20, // TargetTimePerBlock * 2
 	GenerateSupported:        false,
+
+	// Checkpoints ordered from oldest to newest.
+	Checkpoints: []Checkpoint{
+		{5000, newHashFromStr("00000000038392cdae17df19464dfcccadb754b24441d11f3294cc04a90749b8")},
+		{9500, newHashFromStr("00000000bd750801352dd82fcb0e675d62a308b38a6486698308ae06fcb3bc10")},
+	},
 
 	// Consensus rule change deployments.
 	//
