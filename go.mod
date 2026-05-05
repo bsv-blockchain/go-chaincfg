@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/bsv-blockchain/go-bt/v2 v2.6.3
-	github.com/bsv-blockchain/go-wire v1.2.2
+	github.com/bsv-blockchain/go-wire v1.2.3
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/stretchr/testify v1.11.1
 )
