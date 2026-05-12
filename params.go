@@ -321,6 +321,7 @@ var MainNetParams = Params{
 		{868500, newHashFromStr("00000000000000000a4c8747ee369c2f4645cf7b55db534851fdc1a040f74de4")},
 		{900000, newHashFromStr("000000000000000002feb6a36e1b8bf81409d0252e285449e3d0ef2388c5506a")},
 		{938000, newHashFromStr("000000000000000002616a5ad2413acf7cf122c5aa27fbd29bfa0e8c12dd455b")},
+		{945000, newHashFromStr("00000000000000000c39d94e19d6a55cfb0454918df1814fbcd919353a6e1f82")},
 	},
 
 	// Consensus rule change deployments.
@@ -585,6 +586,7 @@ var TestNetParams = Params{
 		{1500000, newHashFromStr("00000000000005a00d805e3555e53f18c6276cb5ddc90a3ceeaeaf03bb2fdbea")},
 		{1600000, newHashFromStr("000000000000133137efc60aab38163c0d032d651826ccbda90b169f3bcec6dd")},
 		{1700000, newHashFromStr("000000000004862daef0df15508b0a88efb75faa5be0c521409a29832e23d07c")},
+		{1730000, newHashFromStr("00000000000e61efa6a236cd94662eefc814a24affb9f24b002ebc4b018e4256")},
 	},
 
 	// Consensus rule change deployments.
@@ -664,6 +666,7 @@ var TeraTestNetParams = Params{
 	Checkpoints: []Checkpoint{
 		{5000, newHashFromStr("00000000038392cdae17df19464dfcccadb754b24441d11f3294cc04a90749b8")},
 		{9500, newHashFromStr("00000000bd750801352dd82fcb0e675d62a308b38a6486698308ae06fcb3bc10")},
+		{18000, newHashFromStr("00000000174095c3c94343b28d29f45010b44bf221e22df5cea6e0ce547a10b5")},
 	},
 
 	// Consensus rule change deployments.
