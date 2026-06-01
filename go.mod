@@ -3,14 +3,14 @@ module github.com/bsv-blockchain/go-chaincfg
 go 1.25.0
 
 require (
-	github.com/bsv-blockchain/go-bt/v2 v2.6.4
-	github.com/bsv-blockchain/go-wire v1.2.6
+	github.com/bsv-blockchain/go-bt/v2 v2.6.5
+	github.com/bsv-blockchain/go-wire v1.2.7
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/stretchr/testify v1.11.1
 )
 
 require (
-	github.com/bsv-blockchain/go-sdk v1.2.23 // indirect
+	github.com/bsv-blockchain/go-sdk v1.2.24 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	golang.org/x/crypto v0.52.0 // indirect
