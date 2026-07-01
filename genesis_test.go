@@ -274,6 +274,20 @@ func TestRegtestGenesisBlock(t *testing.T) {
 	assert.Equal(t, "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206", regTestGenesisBlock.Header.BlockHash().String())
 }
 
+// TestScalingTeraTestNetGenesisBlock verifies the scaling tera test network
+// genesis block hash, coinbase txid (merkle root), and that the params are
+// wired to it correctly.
+func TestScalingTeraTestNetGenesisBlock(t *testing.T) {
+	assert.Equal(t, "000000005d221c0e023cb56b5682cf094f32cd959958b40bc931e5797cae706c",
+		scalingTeraTestNetGenesisBlock.Header.BlockHash().String())
+
+	assert.Equal(t, "64452e5b25c65e492ad6a4f5ce9f427ca986626c28315d88de920d66e28cc98f",
+		scalingTeraTestNetGenesisBlock.Transactions[0].TxHash().String())
+
+	hash := TeraScalingTestNetParams.GenesisBlock.BlockHash()
+	assert.True(t, TeraScalingTestNetParams.GenesisHash.IsEqual(&hash))
+}
+
 // TestTeraTestNetGenesisBlock tests the genesis block of the tera test network
 // for validity by checking the encoded bytes and hashes.
 func TestTeraTestNetGenesisBlock(t *testing.T) {
