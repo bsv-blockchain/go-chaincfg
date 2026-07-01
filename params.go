@@ -716,10 +716,10 @@ var TeraScalingTestNetParams = Params{
 	DefaultPort: "18333",
 
 	// Chain parameters
-	GenesisBlock: &testNetGenesisBlock,
-	GenesisHash:  &testNetGenesisHash,
+	GenesisBlock: &scalingTeraTestNetGenesisBlock,
+	GenesisHash:  &scalingTeraTestNetGenesisHash,
 	PowLimit:     testNetPowLimit,
-	PowLimitBits: 0x1d00ffff, // very easy pow limit
+	PowLimitBits: 0x1d00ffff, // 0x1d00ffff = difficulty-1, matching the scaling testnet genesis bits
 
 	BIP0034Height: 0, // Not active - Permit ver 1 blocks
 	BIP0065Height: 0, // Used by regression tests
