@@ -472,8 +472,8 @@ var RegressionNetParams = Params{
 	// November 13, 2017, hard fork is always on regtest.
 	DaaForkHeight: 0,
 
-	GenesisActivationHeight:   10000,
-	ChronicleActivationHeight: 15000, // temporary and subject to change
+	GenesisActivationHeight:   100,
+	ChronicleActivationHeight: 200, // temporary and subject to change
 
 	SubsidyReductionInterval: 150,
 	TargetTimePerBlock:       time.Minute * 10, // 10 minutes
