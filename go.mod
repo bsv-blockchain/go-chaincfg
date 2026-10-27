@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/bsv-blockchain/go-bt/v2 v2.7.4
 	github.com/bsv-blockchain/go-sdk v1.7.3
-	github.com/bsv-blockchain/go-wire v1.4.0
+	github.com/bsv-blockchain/go-wire v1.5.0
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/stretchr/testify v1.12.1
 )
